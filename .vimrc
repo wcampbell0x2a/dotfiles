@@ -14,6 +14,8 @@ filetype indent on
 set wildmenu
 set showmatch
 set incsearch
+nnoremap i :noh<cr>i
+
 set hlsearch
 
 "allows cursor change in tmux mode
