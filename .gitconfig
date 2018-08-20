@@ -1,0 +1,9 @@
+[user]
+    email = wcampbell1995@gmail.com
+    name = userWayneCampbell
+[diff]
+    tool = vimdiff
+[core]
+    editor = vim
+[difftool]
+    prompt = true
