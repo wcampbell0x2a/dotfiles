@@ -29,3 +29,8 @@ set splitbelow
 set splitright
 
 set colorcolumn=81
+
+"Hightlight BadWhitespace
+highlight BadWhitespaces ctermbg=red guibg=red
+
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespaces /\s\+$/
