@@ -7,4 +7,4 @@ non dnf repo software:
 Gyazo: https://github.com/gyazo/Gyazo-for-Linux
 Rasin: https://github.com/resin-io/
 
-All color schemes are solarized and created for Fedora Release 28.
+All color schemes are solarized and created for Fedora Release 28/ArchLabs2.
