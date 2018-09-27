@@ -1,10 +1,6 @@
 # dotfiles
 Dotfiles are used with my fork of dwm, slock, and slstatus.
 
-Common software used: vim, tig, ranger, tmux, weechat, gnome-terminal, alsamixer, hack-font, slock, dwm, slstatus, nmcli (with my custom fish functions), etcher, and plexamp.
+install_list is a list of software to install after installation using pacman and yay.
 
-non dnf repo software: 
-Gyazo: https://github.com/gyazo/Gyazo-for-Linux
-Rasin: https://github.com/resin-io/
-
-All color schemes are solarized and created for Fedora Release 28/ArchLabs2.
+All color schemes are solarized and created for Arch. (I used arch btw)
