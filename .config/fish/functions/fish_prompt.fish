@@ -1,5 +1,5 @@
 # Fish prompt mixture of git and lonewin prompts
-# with solarized
+# with solarized colors
 function fish_prompt --description 'Write out the prompt'
 	set -l last_status $status
 
@@ -11,7 +11,7 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     if not set -q __fish_git_prompt_color_branch
-        set -g __fish_git_prompt_color_branch cyan --bold
+        set -g __fish_git_prompt_color_branch brwhite
     end
     if not set -q __fish_git_prompt_showupstream
         set -g __fish_git_prompt_showupstream "informative"
@@ -72,15 +72,15 @@ function fish_prompt --description 'Write out the prompt'
             else
                 set color_cwd $fish_color_cwd
             end
-            set suffix ' #'
+            set suffix '# '
         case '*'
             set color_cwd $fish_color_cwd
-            set suffix ' >'
+            set suffix '> '
     end
 
     # PWD
     echo -n -s "$USER" @ (prompt_hostname) ' '
-    set_color red --bold
+    set_color 5f8700
     echo -n (prompt_pwd)
     set_color normal
 
@@ -89,7 +89,7 @@ function fish_prompt --description 'Write out the prompt'
     if not test $last_status -eq 0
         set_color $fish_color_error
     end
-
+    set_color 0087ff
     echo -n "$suffix"
 
     set_color normal
