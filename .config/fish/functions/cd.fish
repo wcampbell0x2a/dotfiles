@@ -2,9 +2,9 @@
 function cd --description "auto ls for each cd"
   if [ -n $argv[1] ]
     builtin cd $argv[1]
-    and ls -laAF
+    and ls
   else
     builtin cd ~
-    and ls -laAF
+    and ls
   end
 end
