@@ -18,7 +18,6 @@ set show-changes		= yes		# Show changes commits in the main view?
 set wrap-lines			= no		# Wrap long lines in pager views?
 set tab-size			= 8		# Number of spaces to use when expanding tabs
 set line-graphics		= default	# Enum: ascii, default, utf-8
-set truncation-delimiter= ~		# Character drawn for truncations, or "utf-8"
 
 set mouse               = yes
 
