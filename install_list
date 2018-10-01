@@ -27,6 +27,8 @@ noto-fonts
 qtorrent
 dkms
 kernel-headers-musl
+kitty
+sxiv
 
 -yay-
 libx11
@@ -38,3 +40,4 @@ keeweb-desktop
 gyanzo
 etcher
 scientifica-bdf 
+gotop-bin
