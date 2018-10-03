@@ -29,6 +29,7 @@ dkms
 kernel-headers-musl
 kitty
 sxiv
+evince
 
 -yay-
 libx11
@@ -42,3 +43,5 @@ etcher
 scientifica-bdf 
 gotop-bin
 jfbview
+perl-image-exiftool
+xpdf
