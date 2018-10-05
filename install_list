@@ -30,6 +30,7 @@ kernel-headers-musl
 kitty
 sxiv
 evince
+john
 
 -yay-
 libx11
@@ -45,3 +46,4 @@ gotop-bin
 jfbview
 perl-image-exiftool
 xpdf
+alsa-tray
