@@ -22,3 +22,7 @@ set line-graphics		= default	# Enum: ascii, default, utf-8
 set mouse               = yes
 
 color cursor blue black
+color header blue black
+color id blue black
+color title-focus blue black
+color title-blur blue black
