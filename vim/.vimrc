@@ -5,7 +5,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set mouse=a
+if has('mouse')
+  set mouse=a
+endif
+
 
 syntax enable
 set background=dark
