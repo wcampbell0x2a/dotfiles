@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Linking dotfiles to home directory ($HOME)";
 
