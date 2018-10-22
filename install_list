@@ -33,6 +33,7 @@ evince
 john
 stow
 pavucontrol
+curl
 
 -yay-
 libx11
@@ -50,3 +51,9 @@ perl-image-exiftool
 xpdf
 alsa-tray
 pamixer
+
+Google Chrome Fonts:
+Standard: Cantarell
+Serif: Liberation Serif
+Sans-serif: Liberation Sans
+Fixed-width: Liberation Mono
