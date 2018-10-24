@@ -9,3 +9,5 @@
     prompt = true
 [merge]
 	tool = vimdiff
+[push]
+	default = matching
