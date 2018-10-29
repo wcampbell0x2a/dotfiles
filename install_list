@@ -19,7 +19,6 @@ openssh
 arandr
 virtualbox
 alsa-utils
-cava
 htop
 ttf-dejavu
 ttf-liberation
@@ -35,15 +34,21 @@ stow
 pavucontrol
 curl
 task
+tmux
+fish
+fakeroot
+pkgconf
 
 -yay-
+yay
 libx11
 libxinerama
 libxft
+cava
 signal-desktop-bin (git)
 google-chrome
 keeweb-desktop
-gyanzo
+gyazo
 etcher
 scientifica-bdf 
 gotop-bin
@@ -53,6 +58,8 @@ xpdf
 alsa-tray
 pamixer
 plex-media-player
+tig
+task
 
 Google Chrome Fonts:
 Standard: Cantarell
