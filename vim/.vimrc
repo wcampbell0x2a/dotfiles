@@ -5,10 +5,16 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+
+
 if has('mouse')
   set mouse=a
 endif
-
 
 syntax enable
 set background=dark
