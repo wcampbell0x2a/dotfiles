@@ -1,8 +1,8 @@
 # statusbar 
 slstatus &
 
-# Load wallpaper
-#feh --bg-fill /home/waynecampbell/Projects/dwm/patches/wallpaper.jpg
+# Background color
+xsetroot -solid "#002b36"
 
 # Load fonts
 xset +fp /usr/share/fonts/local/
