@@ -44,3 +44,6 @@ set colorcolumn=81
 "Hightlight BadWhitespace
 highlight BadWhitespaces ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespaces /\s\+$/
+
+"aspell shortcut
+map  :w!<CR>:!aspell check %<CR>:e! %<CR>
