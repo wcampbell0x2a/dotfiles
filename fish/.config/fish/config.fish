@@ -4,3 +4,6 @@ if status is-login
         exec startx -- -keeptty
     end
 end
+
+# Use grep color always
+set -g GREP_OPTIONS '--color=always'
