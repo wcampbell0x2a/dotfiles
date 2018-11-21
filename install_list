@@ -38,6 +38,8 @@ tmux
 fish
 fakeroot
 pkgconf
+aspell-en
+wget
 
 -yay-
 yay
