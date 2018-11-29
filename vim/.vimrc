@@ -14,14 +14,12 @@ augroup Cpp
     autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
-"set mouse settings to all
-set mouse+=a
-
 "Screen support
 if &term =~ '^screen'
     set ttymouse=xterm2
 endif
 
+set modeline
 
 if has('mouse')
   set mouse=a

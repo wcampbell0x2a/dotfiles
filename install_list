@@ -40,6 +40,8 @@ fakeroot
 pkgconf
 aspell-en
 wget
+adobe-source-han-sans-cn-fonts
+ttf-dejavu
 
 -yay-
 yay
@@ -64,7 +66,7 @@ tig
 task
 
 Google Chrome Fonts:
-Standard: Cantarell
+Standard: Liberation Serif
 Serif: Liberation Serif
 Sans-serif: Liberation Sans
 Fixed-width: Liberation Mono
