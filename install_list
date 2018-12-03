@@ -1,4 +1,9 @@
--pacman-
+# Install yay from source
+sudo pacman -S git
+git clone https://aur.archlinux.org/yay.gitA
+cd yay
+makepkg -si 
+yay -Syu yay --combinedupgrade --save
 sudo
 make
 gcc
@@ -42,14 +47,12 @@ aspell-en
 wget
 adobe-source-han-sans-cn-fonts
 ttf-dejavu
-
--yay-
 yay
 libx11
 libxinerama
 libxft
 cava
-signal-desktop-bin (git)
+signal-desktop-bin
 google-chrome
 keeweb-desktop
 gyazo
@@ -62,7 +65,7 @@ xpdf
 alsa-tray
 pamixer
 plex-media-player
-tig
+tig 
 task
 
 Google Chrome Fonts:
