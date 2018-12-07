@@ -77,9 +77,9 @@ marquee_right()
 			strout="$(echo "$string" | cut -b $j-)"
 			let --j
 			[ $j -gt 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
-			$PRINT "$strout $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date)"
+			$PRINT "$strout | $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date)"
 			#Debug
-			#$PRINT "$strout $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date) \r "
+			#$PRINT "$strout | $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date) \r "
 			sleep $INTERVAL
 		}
 		else
