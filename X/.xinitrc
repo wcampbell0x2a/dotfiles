@@ -1,5 +1,5 @@
 # statusbar 
-slstatus &
+~/scripts/statusbar.sh &
 
 # Background color
 xsetroot -solid "#002b36"
