@@ -31,7 +31,11 @@ get_plex_info(){
 
 cpu_usage()
 {
-	echo $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print int(100 - $1)"%"}')
+	echo $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
+	{if (int(100 - $1) >= 10) 
+		print int(100 - $1)"%"
+	else
+		print "0"int(100-$1)"%"}')
 }
 
 ram_usage()
