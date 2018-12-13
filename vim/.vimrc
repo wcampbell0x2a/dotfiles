@@ -52,6 +52,7 @@ set splitbelow
 set splitright
 
 set colorcolumn=81
+set cursorline
 
 "Hightlight BadWhitespace
 highlight BadWhitespaces ctermbg=red guibg=red
