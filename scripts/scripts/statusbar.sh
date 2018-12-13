@@ -23,7 +23,12 @@ get_plex_info(){
     		artist=$(grep "display-tags:  Artist" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
     		title=$(grep "display-tags:  Title" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
     		album=$(grep "display-tags:  Album" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
-    		plex_output="$artist-$title-$album "
+		if [[ -z "$artist" || -z "$title" || -z "$album" ]]
+		then
+			plex_output=""
+		else
+    			plex_output="$artist-$title-$album "
+		fi
   	else
     		plex_output=""
   	fi
