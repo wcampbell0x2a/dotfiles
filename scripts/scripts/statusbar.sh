@@ -31,31 +31,43 @@ get_plex_info(){
 
 cpu_usage()
 {
-	echo $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
+	echo cpu $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
 	{if (int(100 - $1) >= 10) 
 		print int(100 - $1)"%"
 	else
-		print "0"int(100-$1)"%"}')
+		print "0"int(100-$1)"%"}')," "
 }
 
 ram_usage()
 {
-	echo $(free | grep Mem | awk '{printf int($3/$2 * 100.0)"%"}')
+	echo ram $(free | grep Mem | awk '{printf int($3/$2 * 100.0)"%"}')," "
 }
 
-lan_ip()
+lan_wired()
 {
-	echo $(ip -4 -o addr show dev ens20u1u4| awk '{split($4,a,"/");print a[1]}')
+	ip=$(ip -4 -o addr show dev ens20u1u4| awk '{split($4,a,"/");print a[1]}')
+	if [ -z "$ip" ]
+	then
+		echo ""
+	else
+		echo lan "$ip"," " 
+	fi
 }
 
 lan_wireless()
 {
-	echo $(ip -4 -o addr show dev wlp59s0| awk '{split($4,a,"/");print a[1]}')
+	ip=$(ip -4 -o addr show dev wlp59s0 | awk '{split($4,a,"/");print a[1]'})
+	if [ -z "$ip" ]
+	then
+		echo ""
+	else
+		echo wlan "$ip"," "
+	fi
 }
 
 vol_level()
 {
-	echo $(amixer get Master | tail -n1 | grep -Po "\\[\\K[^%]*" | head -n1)
+	echo vol $(amixer get Master | tail -n1 | grep -Po "\\[\\K[^%]*" | head -n1)%," "
 }
 
 format_date()
@@ -64,7 +76,7 @@ format_date()
 }
 
 #
-# Marquee text from left to the right
+# Marquee text plex information, print out system information
 #
 marquee_right()
 {
@@ -81,9 +93,7 @@ marquee_right()
 			strout="$(echo "$string" | cut -b $j-)"
 			let --j
 			[ $j -gt 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
-			$PRINT "$strout | $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date)"
-			#Debug
-			#$PRINT "$strout | $(whoami): cpu $(cpu_usage), ram $(ram_usage), lan $(lan_ip), wlan $(lan_wireless), vol $(vol_level)%, $(format_date) \r "
+			$PRINT "$strout | $(whoami): $(cpu_usage)$(ram_usage)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
 			sleep $INTERVAL
 		}
 		else
