@@ -3,73 +3,12 @@ sudo pacman -S git
 git clone https://aur.archlinux.org/yay.gitA
 cd yay
 makepkg -si 
-yay -Syu yay --combinedupgrade --save
-sudo
-make
-gcc
-git
-xorg-server
-xorg-xinit
-feh
-ttf-hack
-dialog
-networkmanager
-dmenu
-gnome-terminal
-st
-weechat
-screenfetch
-cmatrix
-openssh
-arandr
-virtualbox
-alsa-utils
-htop
-ttf-dejavu
-ttf-liberation
-noto-fonts
-qtorrent
-dkms
-kernel-headers-musl
-kitty
-sxiv
-evince
-john
-stow
-pavucontrol
-curl
-task
-tmux
-fish
-fakeroot
-pkgconf
-aspell-en
-wget
-adobe-source-han-sans-cn-fonts
-ttf-dejavu
-yay
-libx11
-libxinerama
-libxft
-cava
-signal-desktop-bin
-google-chrome
-keeweb-desktop
-gyazo
-etcher
-scientifica-bdf 
-gotop-bin
-jfbview
-perl-image-exiftool
-xpdf
-alsa-tray
-pamixer
-plex-media-player
-tig 
-task
 
-Google Chrome Fonts:
-Standard: Liberation Serif
-Serif: Liberation Serif
-Sans-serif: Liberation Sans
-Fixed-width: Liberation Mono
+# Install from aur (yay), set yay to display both aur and arch core
+yay -Syu --combinedupgrade --save sudo make gcc git xorg-server xorg-xinit feh ttf-hack dialog networkmanager dmenu gnome-terminal st weechat screenfetc cmatrix openssh arandr virtualbox alsa-utils htop ttf-dejavu ttf-liberation noto-fonts qtorrent dkms kernel-headers-musl kitty sxiv evince john stow pavucontrol curl task tmux fish fakeroot pkgconf aspell-en wget adobe-source-han-sans-cn-fonts ttf-dejavu yay libx11 libxinerama libxft cava signal-desktop-bin google-chrome keeweb-desktop gyazo etcher scientifica-bdf gotop-bin jfbview perl-image-exiftool xpdf alsa-tray pamixer plex-media-player tig  task unzip
+
+# Google Chrome Fonts:
+# Standard: Liberation Serif
+# Serif: Liberation Serif
+# Sans-serif: Liberation Sans
+# Fixed-width: Liberation Mono
