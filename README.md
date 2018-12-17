@@ -1,7 +1,7 @@
 # dotfiles
-Dotfiles are used with my fork of dwm, slock, and slstatus.
+Dotfiles are used with my fork of dwm and slock.
 
-install_list is a list of software to install after installation using pacman and yay.
+install_list is a list of commands to run to have my selected packages.
 
 All color schemes are solarized and created for Arch. (I used arch btw)
 
