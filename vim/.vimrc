@@ -60,3 +60,11 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp,*.hpp match BadWhitespaces /\s\+$
 
 "aspell shortcut
 map  :w!<CR>:!aspell check %<CR>:e! %<CR>
+
+"Move by display lines when word wrap works
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+onoremap <silent> j gj
+onoremap <silent> k gk
