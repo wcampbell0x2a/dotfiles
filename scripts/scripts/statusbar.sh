@@ -34,6 +34,12 @@ get_plex_info(){
   	fi
 }
 
+current_bat()
+{
+	bat=$(cat /sys/class/power_supply/BAT0/capacity)
+	echo "bat $bat%"," "
+}
+
 cpu_usage()
 {
 	echo cpu $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
@@ -98,7 +104,8 @@ marquee_right()
 			strout="$(echo "$string" | cut -b $j-)"
 			let --j
 			[ $j -gt 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
-			$PRINT "$strout | $(whoami): $(cpu_usage)$(ram_usage)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
+			# @TODO if strout print |, if not print nothing
+			$PRINT "$strout | $(whoami): $(cpu_usage)$(ram_usage)$(current_bat)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
 			sleep $INTERVAL
 		}
 		else
