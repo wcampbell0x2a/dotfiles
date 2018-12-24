@@ -1,8 +1,8 @@
 # statusbar 
 ~/scripts/statusbar.sh &
 
-# Background color
-xsetroot -solid "#002b36"
+# Load Wallpaper
+feh --bg-fill ~/wallpapers/Solarized_Arch_Wallpaper.png
 
 # Load fonts
 xset +fp /usr/share/fonts/local/
