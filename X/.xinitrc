@@ -10,5 +10,8 @@ xset +fp /usr/share/fonts/local/
 # Load .Xresources
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
+# Start usb auto mount to /run/media/
+~/scripts/udevadmmonitor.sh &
+
 # Start dwm
 exec dwm
