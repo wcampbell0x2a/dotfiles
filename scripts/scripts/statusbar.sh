@@ -89,7 +89,7 @@ format_date()
 #
 # Marquee text plex information, print out system information
 #
-marquee_right()
+marquee_left()
 {
 	get_plex_info	
 	string="$plex_output"
@@ -100,12 +100,17 @@ marquee_right()
 		get_plex_info
 		if [[ $plex_output == $string ]]; then
 		{
-			let j=$eidx-$i+1
-			strout="$(echo "$string" | cut -b $j-)"
+			let j=i+1
+			strout="$(echo "$string" | cut -b $i-)"
 			let --j
-			[ $j -gt 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
-			# @TODO if strout print |, if not print nothing
-			$PRINT "$strout | $(whoami): $(cpu_usage)$(ram_usage)$(current_bat)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
+			[ $j -ne 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
+			if [ -z "$strout" ]
+			then
+			      begin=""
+			else
+			      begin="$strout | "
+			fi	
+			$PRINT "$begin$(whoami): $(cpu_usage)$(ram_usage)$(current_bat)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
 			sleep $INTERVAL
 		}
 		else
@@ -115,7 +120,6 @@ marquee_right()
 		fi
 	done
 }
-
 
 #
 # The main function
@@ -129,9 +133,8 @@ main()
 
 	while true
 	do
-		marquee_right
+		marquee_left
 	done
 }
 
 main
-
