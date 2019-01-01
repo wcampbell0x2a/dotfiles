@@ -3,7 +3,11 @@
 # Status bar for dwm
 #
 # Plex parser: Written by Wayne Campbell
-# Bash Marque: Written by Claudio M. Alessi
+# Bash Marque: Written by Claudio M. Alessi(https://github.com/itdaniher/bash-scripts-old/blob/master/marquee)
+#
+# Prints plex output from plexmediaplayer.log file. Parses this output into a marquee
+# that was found on github. I used the logic in the sample to create my own marquee for the plex output.
+# Prints out useful system info as an exercise in linux cmd line.
 ##
 
 # Interval between permutation in the current marquee
@@ -12,7 +16,7 @@ INTERVAL=.3
 # Output program
 PRINT="$(which xsetroot) -name"
 # Debug
-#PRINT="echo -ne"
+#PRINT="echo -ne \n"
 
 #
 # Get plex info from log files
