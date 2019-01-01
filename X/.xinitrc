@@ -13,5 +13,11 @@ xset +fp /usr/share/fonts/local/
 # Start usb auto mount to /run/media/
 ~/scripts/udevadmmonitor.sh &
 
+# Start battery notification script
+~/scripts/battery_notify.sh &
+
+# Needed for dunst
+systemctl --user import-environment DISPLAY
+
 # Start dwm
 exec dwm
