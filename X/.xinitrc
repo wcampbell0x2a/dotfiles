@@ -15,6 +15,10 @@ xset +fp /usr/share/fonts/local/
 
 # Start battery notification script
 ~/scripts/battery_notify.sh &
+~/scripts/charging_notify.sh &
+
+# Start volume changing script
+~/scripts/volume.sh &
 
 # Needed for dunst
 systemctl --user import-environment DISPLAY
