@@ -24,9 +24,9 @@ PRINT="$(which xsetroot) -name"
 get_plex_info(){
 	user_name=$USER
   	if (pgrep -x "plexmediaplayer" > /dev/null); then
-    		artist=$(grep "display-tags:  Artist" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
-    		title=$(grep "display-tags:  Title" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
-    		album=$(grep "display-tags:  Album" /home/$user_name/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
+    		artist=$(grep "display-tags:  Artist" /home/"$user_name"/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
+    		title=$(grep "display-tags:  Title" /home/"$user_name"/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
+    		album=$(grep "display-tags:  Album" /home/"$user_name"/.local/share/plexmediaplayer/logs/plexmediaplayer.log | tail -1 | sed 's/.*://')
 		if [[ -z "$artist" || -z "$title" || -z "$album" ]]
 		then
 			plex_output=""
@@ -40,54 +40,54 @@ get_plex_info(){
 
 current_bat()
 {
-	bat=$(cat /sys/class/power_supply/BAT0/capacity)
-	echo "bat $bat%"," "
+	bat="$(cat /sys/class/power_supply/BAT0/capacity)"
+	echo "bat $bat%, "
 }
 
 cpu_usage()
 {
-	echo cpu $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
+	echo "cpu $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
 	{if (int(100 - $1) >= 10) 
 		print int(100 - $1)"%"
 	else
-		print "0"int(100-$1)"%"}')," "
+		print "0"int(100-$1)"%"}'), "
 }
 
 ram_usage()
 {
-	echo ram $(free | grep Mem | awk '{printf int($3/$2 * 100.0)"%"}')," "
+	echo "ram $(free | grep Mem | awk '{printf int($3/$2 * 100.0)"%"}'), "
 }
 
 lan_wired()
 {
-	ip=$(ip -4 -o addr show dev ens20u1u4| awk '{split($4,a,"/");print a[1]}')
+	ip="$(ip -4 -o addr show dev ens20u1u4| awk '{split($4,a,"/");print a[1]}')"
 	if [ -z "$ip" ]
 	then
 		echo ""
 	else
-		echo lan "$ip"," " 
+		echo "lan $ip, " 
 	fi
 }
 
 lan_wireless()
 {
-	ip=$(ip -4 -o addr show dev wlp59s0 | awk '{split($4,a,"/");print a[1]'})
+	ip="$(ip -4 -o addr show dev wlp59s0 | awk '{split($4,a,"/");print a[1]}')"
 	if [ -z "$ip" ]
 	then
 		echo ""
 	else
-		echo wlan "$ip"," "
+		echo "wlan $ip, "
 	fi
 }
 
 vol_level()
 {
-	echo vol $(amixer get Master | tail -n1 | grep -Po "\\[\\K[^%]*" | head -n1)%," "
+	echo "vol $(amixer get Master | tail -n1 | grep -Po "\\[\\K[^%]*" | head -n1)%, "
 }
 
 format_date()
 {
-	echo $(date +"%D %T")
+	date +"%D %T"
 }
 
 #
@@ -97,16 +97,16 @@ marquee_left()
 {
 	get_plex_info	
 	string="$plex_output"
-	let eidx=${#string}+1
+	(( eidx=${#string}+1 ))
 
 	for i in $(seq 1 $eidx)
 	do
 		get_plex_info
-		if [[ $plex_output == $string ]]; then
+		if [[ "$plex_output" == "$string" ]]; then
 		{
-			let j=i+1
-			strout="$(echo "$string" | cut -b $i-)"
-			let --j
+			((j=i+1 ))
+			strout="$(echo "$string" | cut -b "$i"-)"
+			(( --j ))
 			[ $j -ne 0 ] && strout="$strout$(echo "$string" | cut -b -$j)"
 			if [ -z "$strout" ]
 			then

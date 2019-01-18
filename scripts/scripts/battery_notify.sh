@@ -9,7 +9,7 @@ main()
 {
 	while true
 	do
-	if [ $(cat /sys/class/power_supply/BAT0/status) != "Charging" ]; then
+	if [ "$(cat /sys/class/power_supply/BAT0/status)" != "Charging" ]; then
 		bat=$(cat /sys/class/power_supply/BAT0/capacity)
 		if [[ $bat -le 50 && $bat -gt 20 ]]; then
 			notify-send "Battery Warning" "Warning: Battery level is ${bat}%"
@@ -23,6 +23,7 @@ main()
 		sleep 1m
 		fi
 	fi
+	sleep 10m
 	done
 }
 

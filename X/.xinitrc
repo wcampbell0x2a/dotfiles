@@ -13,7 +13,7 @@ xset +fp /usr/share/fonts/local/
 # Start usb auto mount to /run/media/
 ~/scripts/udevadmmonitor.sh &
 
-# Start battery notification script
+# Start battery notification scripts
 ~/scripts/battery_notify.sh &
 ~/scripts/charging_notify.sh &
 
