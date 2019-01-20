@@ -1,0 +1,9 @@
+#!/bin/sh
+
+while read file
+do
+		case "$1" in
+		#Set Wallpaper
+		"C-w")		feh --bg-fill "$file" ;;
+		esac
+done
