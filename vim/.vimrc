@@ -1,3 +1,4 @@
+" Always display the status line, even if only one window is displayed
 set laststatus=2
 
 filetype plugin indent on
@@ -26,12 +27,26 @@ if has('mouse')
 endif
 
 syntax enable
+
+" Enable Solarized
 set background=dark
 colorscheme solarized
+
 filetype indent on
+
+" Better command-line completion
 set wildmenu
+set showcmd
+
 " highlight matching braces
 set showmatch
+
+" Use case insensitive search, except when using capital letters
+" set ignorecase
+set smartcase
+
+" Use <F11> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F11>
 
 "show search results while typing, reset when in insert mode
 set incsearch
@@ -48,9 +63,11 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+"Improved vim splits
 set splitbelow
 set splitright
 
+" Show column at line 81
 set colorcolumn=81
 set cursorline
 
