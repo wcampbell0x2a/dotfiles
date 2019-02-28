@@ -87,19 +87,25 @@ onoremap <silent> j gj
 onoremap <silent> k gk
 
 set statusline=
-set statusline+=%#PmenuSel#
+set statusline+=%#WildMenu#
+set statusline+=\ " "
 set statusline+=%{gitbranch#name()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
+set statusline+=\ "    "
+set statusline+=%#Pmenu#
+set statusline+=\ "    "
 set statusline+=%m
+set statusline+=\ %f
+set statusline+=\ "    "
+set statusline+=%#LineNr#
 set statusline+=%=
-set statusline+=%#CursorColumn#
+set statusline+=%#Pmenu#
+set statusline+=\ "    "
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\
+set statusline+=\ %p%%
+set statusline+=\ " "
 
 "Vundle
 so ~/.vim/plugins.vim
