@@ -5,6 +5,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'itchyny/vim-gitbranch'
 call vundle#end()
 
 filetype plugin indent on
