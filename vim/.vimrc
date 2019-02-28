@@ -113,6 +113,3 @@ set statusline+=\
 
 "Vundle
 so ~/.vim/plugins.vim
-
-
-
