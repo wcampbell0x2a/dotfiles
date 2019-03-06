@@ -6,6 +6,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'itchyny/vim-gitbranch'
+Plugin 'severin-lemaignan/vim-minimap'
 call vundle#end()
 
 filetype plugin indent on
