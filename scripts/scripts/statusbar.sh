@@ -47,7 +47,7 @@ current_bat()
 cpu_usage()
 {
 	echo "cpu $(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '
-	{if (int(100 - $1) >= 10) 
+	{if (int(100 - $1) >= 10)
 		print int(100 - $1)"%"
 	else
 		print "0"int(100-$1)"%"}'), "
@@ -60,18 +60,18 @@ ram_usage()
 
 lan_wired()
 {
-	ip="$(ip -4 -o addr show dev ens20u1u4| awk '{split($4,a,"/");print a[1]}')"
+	ip="$(ip -4 -o addr show dev eno1 | awk '{split($4,a,"/");print a[1]}')"
 	if [ -z "$ip" ]
 	then
 		echo ""
 	else
-		echo "lan $ip, " 
+		echo "lan $ip, "
 	fi
 }
 
 lan_wireless()
 {
-	ip="$(ip -4 -o addr show dev wlp59s0 | awk '{split($4,a,"/");print a[1]}')"
+	ip="$(ip -4 -o addr show dev wlo1 | awk '{split($4,a,"/");print a[1]}')"
 	if [ -z "$ip" ]
 	then
 		echo ""
@@ -95,7 +95,7 @@ format_date()
 #
 marquee_left()
 {
-	get_plex_info	
+	get_plex_info
 	string="$plex_output"
 	(( eidx=${#string}+1 ))
 
@@ -113,7 +113,7 @@ marquee_left()
 			      begin=""
 			else
 			      begin="$strout | "
-			fi	
+			fi
 			$PRINT "$begin$(whoami): $(cpu_usage)$(ram_usage)$(current_bat)$(lan_wired)$(lan_wireless)$(vol_level)$(format_date)"
 			sleep $INTERVAL
 		}
