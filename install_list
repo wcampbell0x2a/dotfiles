@@ -5,7 +5,7 @@ cd yay
 makepkg -si 
 
 # Install from aur (yay), set yay to display both aur and arch core
-yay -Syu --combinedupgrade --save sudo make gcc git xorg-server xorg-xinit feh ttf-hack dialog networkmanager dmenu gnome-terminal st weechat screenfetc cmatrix openssh arandr virtualbox alsa-utils htop ttf-dejavu ttf-liberation noto-fonts qtorrent dkms kernel-headers-musl kitty sxiv evince john stow pavucontrol curl task tmux fish fakeroot pkgconf aspell-en wget adobe-source-han-sans-cn-fonts ttf-dejavu yay libx11 libxinerama libxft cava signal-desktop-bin google-chrome keeweb-desktop gyazo etcher scientifica-bdf gotop-bin jfbview perl-image-exiftool xpdf alsa-tray pamixer plex-media-player tig  task unzip strace gnupg udisks2 shellcheck exiv2 imagemagick vundle-git
+yay -Syu --combinedupgrade --save sudo make gcc git xorg-server xorg-xinit feh ttf-hack dialog networkmanager dmenu gnome-terminal st weechat screenfetc cmatrix openssh arandr virtualbox alsa-utils htop ttf-dejavu ttf-liberation noto-fonts qtorrent dkms kernel-headers-musl kitty sxiv evince john stow pavucontrol curl task tmux fish fakeroot pkgconf aspell-en wget adobe-source-han-sans-cn-fonts ttf-dejavu yay libx11 libxinerama libxft cava signal-desktop-bin google-chrome keeweb-desktop gyazo etcher scientifica-bdf gotop-bin jfbview perl-image-exiftool xpdf alsa-tray pamixer plex-media-player tig  task unzip strace gnupg udisks2 shellcheck exiv2 imagemagick vundle-git systemd-boot-pacman-hook intel-ucode xorg-xsetroot
 
 # Install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
