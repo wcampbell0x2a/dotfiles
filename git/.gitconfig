@@ -12,3 +12,5 @@
 	tool = vimdiff
 [push]
 	default = matching
+[alias]
+	all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
