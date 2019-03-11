@@ -1,4 +1,4 @@
-# statusbar 
+# statusbar
 ~/scripts/statusbar.sh &
 
 # Load Wallpaper
