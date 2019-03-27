@@ -7,3 +7,6 @@ end
 
 # Use grep color always
 set -g GREP_OPTIONS '--color=always'
+
+# Set dircolors
+eval ( dircolors --c-shell $HOME/.dircolors.ansi-dark )
