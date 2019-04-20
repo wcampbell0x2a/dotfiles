@@ -15,3 +15,21 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Serif: Liberation Serif
 # Sans-serif: Liberation Sans
 # Fixed-width: Liberation Mono
+
+# Weechat settings:
+/script load ~/dotfiles/weechat/chanotify.py
+/script install perlexec.pl go.py colorize_nicks.py autosort.py zerotab.py urlserver.py
+/set weechat.bar.status.color_bg 0
+/set weechat.bar.title.color_bg 0
+/set weechat.color.chat_nick_colors 1,2,3,4,5,6
+/set weechat.color.chat_highlight 7
+/set buflist.format.hotlist_message "${color:7}"
+/set buflist.format.buffer_current "${color:,7}${format_buffer}"
+/set weechat.bar.buflist.items "buflist"
+/autosort rules add irc.server.*.&* = 0
+/autosort rules add irc.server.*.#* = 1
+/autosort rules add irc.server.*.\*status = 2
+/set irc.look.server_buffer independent
+/set weechat.look.hotlist_add_conditions "${away} || ${buffer} != ${window.buffer}"
+cd ~/.weechat/python/autoload
+ln -s ~/dotfiles/weechat/notify-send.py
