@@ -15,6 +15,18 @@ augroup Cpp
     autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
+"c settings
+augroup c
+    autocmd!
+    autocmd FileType c setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+augroup END
+
+"c# settings
+augroup cs
+    autocmd!
+    autocmd FileType cs setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+augroup END
+
 "Screen support
 if &term =~ '^screen'
     set ttymouse=xterm2
