@@ -91,7 +91,7 @@ set statusline+=\ "    "
 set statusline+=%#Pmenu#
 set statusline+=\ "    "
 set statusline+=%m
-set statusline+=\ %f
+set statusline+=\ %F
 set statusline+=\ "    "
 set statusline+=%#LineNr#
 set statusline+=%=
