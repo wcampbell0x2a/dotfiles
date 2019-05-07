@@ -3,29 +3,7 @@ set laststatus=2
 
 filetype plugin indent on
 
-"python settings
-augroup python
-    autocmd!
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-augroup END
-
-"cpp settings
-augroup Cpp
-    autocmd!
-    autocmd FileType cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-augroup END
-
-"c settings
-augroup c
-    autocmd!
-    autocmd FileType c setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-augroup END
-
-"c# settings
-augroup cs
-    autocmd!
-    autocmd FileType cs setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-augroup END
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 "Screen support
 if &term =~ '^screen'
