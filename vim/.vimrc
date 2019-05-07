@@ -38,6 +38,13 @@ if has('mouse')
   set mouse=a
 endif
 
+" mouse_sgr support
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
 syntax enable
 
 " Enable Solarized
