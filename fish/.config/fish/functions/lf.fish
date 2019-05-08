@@ -9,5 +9,5 @@ function lf --description "list fish custom function / scripts"
     echo "-------"
     echo "Scripts"
     echo "-------"
-    ls ~/scripts
+    ls ~/scripts/
 end
