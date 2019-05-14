@@ -103,6 +103,7 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %l:%c
 set statusline+=\ %p%%
 set statusline+=\ " "
+set guitablabel=\[%N\]\ %t\ %M
 
 "Vundle
 so ~/.vim/plugins.vim
