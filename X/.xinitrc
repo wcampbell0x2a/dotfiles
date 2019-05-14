@@ -23,5 +23,8 @@ xset +fp /usr/share/fonts/local/
 # Needed for dunst
 systemctl --user import-environment DISPLAY
 
+# Needed for java fix
+wmname LG3D
+
 # Start dwm
 exec dwm
