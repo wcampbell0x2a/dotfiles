@@ -13,3 +13,6 @@ eval ( dircolors --c-shell $HOME/.dircolors.ansi-dark )
 
 # Fix gpg key request in git
 export GPG_TTY=(tty)
+
+# Needed for java fix
+wmname LG3D
