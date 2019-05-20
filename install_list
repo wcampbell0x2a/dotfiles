@@ -32,4 +32,4 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 /set irc.look.server_buffer independent
 /set weechat.look.hotlist_add_conditions "${away} || ${buffer} != ${window.buffer}"
 cd ~/.weechat/python/autoload
-ln -s ~/dotfiles/weechat/notify-send.py
+ln -s ~/.weehcat/python/notify-send.py
