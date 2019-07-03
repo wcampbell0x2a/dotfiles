@@ -1,6 +1,4 @@
 [user]
-    email = wcampbell1995@gmail.com
-    name = userWayneCampbell
 	signingkey = A0B3015BF635563FA57059D0A040F4DAFC68FFE8
 [diff]
     tool = vimdiff
