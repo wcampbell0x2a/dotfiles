@@ -35,6 +35,11 @@ filetype indent on
 set wildmenu
 set showcmd
 
+" Display tabs as errors
+set list
+set listchars=tab:I-
+match Error /\t/
+
 " highlight matching braces
 set showmatch
 
