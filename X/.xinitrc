@@ -20,6 +20,8 @@ xset +fp /usr/share/fonts/local/
 # Start volume changing script
 ~/scripts/volume.sh &
 
+usb-notify &
+
 # Needed for dunst
 systemctl --user import-environment DISPLAY
 
