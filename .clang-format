@@ -38,7 +38,7 @@ BraceWrapping:
 BreakBeforeTernaryOperators: 'false'
 BreakConstructorInitializers: AfterColon
 ColumnLimit: '80'
-CompactNamespaces: 'true'
+CompactNamespaces: 'false'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
 ContinuationIndentWidth: '8'
 Cpp11BracedListStyle: 'true'
