@@ -2,7 +2,7 @@
 ~/scripts/statusbar.sh &
 
 # Load Wallpaper
-feh --bg-fill ~/wallpapers/Solarized_Arch_Wallpaper.png
+feh --bg-fill ~/wallpapers/the-great-wave.png
 
 # Load fonts
 xset +fp /usr/share/fonts/local/
@@ -21,6 +21,8 @@ xset +fp /usr/share/fonts/local/
 ~/scripts/volume.sh &
 
 usb-notify &
+
+xscreensaver &
 
 # Needed for dunst
 systemctl --user import-environment DISPLAY

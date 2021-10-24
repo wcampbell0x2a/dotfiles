@@ -5,14 +5,19 @@ if status is-login
     end
 end
 
+# set nvim as EDITOR
+set -Ux EDITOR nvim
+
 # Use grep color always
 set -g GREP_OPTIONS '--color=always'
 
 # Set dircolors
-eval ( dircolors --c-shell $HOME/.dircolors.ansi-dark )
+eval ( dircolors --c-shell $HOME/.dircolors.256dark )
 
 # Fix gpg key request in git
 export GPG_TTY=(tty)
 
 # Needed for java fix
 wmname LG3D
+
+starship init fish | source

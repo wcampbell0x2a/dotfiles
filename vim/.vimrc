@@ -70,7 +70,7 @@ set splitbelow
 set splitright
 
 " Show column at line 81
-set colorcolumn=81
+set colorcolumn=101
 set cursorline
 
 "Hightlight BadWhitespace
