@@ -3,7 +3,7 @@
 [diff]
     tool = vimdiff
 [core]
-    editor = vim
+    editor = nvim
 [difftool]
     prompt = true
 [merge]
