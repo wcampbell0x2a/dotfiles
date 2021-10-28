@@ -28,7 +28,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " Color scheme used in the GIFs!
-Plug 'shaunsingh/nord.nvim'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -41,6 +41,46 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
+
+" Spaces & Tabs
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
+
+" enable mouse
+set mouse=a
+
+" Display tabs as errors
+set list
+set listchars=tab:I-
+match Error /\t/
+
+" highlight matching braces
+set showmatch
+
+" Show column at line 101
+set colorcolumn=101
+hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+" Show current cursor location as line
+set cursorline
+highlight cursorline ctermbg=Black
+set cursorlineopt=screenline
+
+"Move by display lines when word wrap works
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
+onoremap <silent> j gj
+onoremap <silent> k gk
+
+" open new split panes to right and below
+set splitright
+set splitbelow
 
 " Configure LSP through rust-tools.nvim plugin.
 " rust-tools will configure and enable certain LSP features for us.

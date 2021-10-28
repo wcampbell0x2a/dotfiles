@@ -69,7 +69,7 @@ endif
 set splitbelow
 set splitright
 
-" Show column at line 81
+" Show column at line 101
 set colorcolumn=101
 set cursorline
 
