@@ -16,21 +16,39 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-buffer'
 
-" See hrsh7th's other plugins for more completion sources!
-
-" To enable more of the features of rust-analyzer, such as inlay hints and more!
-Plug 'simrat39/rust-tools.nvim'
-
 " Fuzzy finder
 " Optional
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-" Color scheme used in the GIFs!
-Plug 'arcticicestudio/nord-vim'
+" colorscheme
+Plug 'shaunsingh/nord.nvim'
+
+" Add zig support
+Plug 'ziglang/zig.vim'
+
+Plug 'itchyny/lightline.vim'
+
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
+
+" Disale --INSERT-- (since using lightline
+set noshowmode
+
+" configure lightline
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
+" configure telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope file_browser<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -82,31 +100,7 @@ onoremap <silent> k gk
 set splitright
 set splitbelow
 
-" Configure LSP through rust-tools.nvim plugin.
-" rust-tools will configure and enable certain LSP features for us.
-" See https://github.com/simrat39/rust-tools.nvim#configuration
-lua <<EOF
-local nvim_lsp = require'lspconfig'
-
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {}, -- rust-analyer options
-}
-
-require('rust-tools').setup(opts)
-EOF
+colorscheme nord
 
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
@@ -143,4 +137,6 @@ cmp.setup({
     { name = 'buffer' },
   },
 })
+
+require('gitsigns').setup()
 EOF
