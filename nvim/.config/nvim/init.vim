@@ -32,6 +32,8 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'lewis6991/gitsigns.nvim'
 
+Plug 'ntpeters/vim-better-whitespace'
+
 call plug#end()
 
 " Disale --INSERT-- (since using lightline
