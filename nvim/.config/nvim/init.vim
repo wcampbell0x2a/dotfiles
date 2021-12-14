@@ -28,7 +28,7 @@ Plug 'shaunsingh/nord.nvim'
 " Add zig support
 Plug 'ziglang/zig.vim'
 
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'lewis6991/gitsigns.nvim'
 
@@ -39,10 +39,6 @@ call plug#end()
 " Disale --INSERT-- (since using lightline
 set noshowmode
 
-" configure lightline
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ }
 
 " configure telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -141,4 +137,34 @@ cmp.setup({
 })
 
 require('gitsigns').setup()
+
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'nord',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+require('lualine').setup()
 EOF
