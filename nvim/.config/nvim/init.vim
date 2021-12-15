@@ -23,7 +23,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " colorscheme
-Plug 'shaunsingh/nord.nvim'
+Plug 'rmehri01/onenord.nvim'
 
 " Add zig support
 Plug 'ziglang/zig.vim'
@@ -38,7 +38,6 @@ call plug#end()
 
 " Disale --INSERT-- (since using lightline
 set noshowmode
-
 
 " configure telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -98,11 +97,13 @@ onoremap <silent> k gk
 set splitright
 set splitbelow
 
-colorscheme nord
+colorscheme onenord
 
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 lua <<EOF
+require('onenord').setup()
+
 local cmp = require'cmp'
 cmp.setup({
   -- Enable LSP snippets
@@ -141,7 +142,7 @@ require('gitsigns').setup()
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'nord',
+    theme = 'onenord',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
