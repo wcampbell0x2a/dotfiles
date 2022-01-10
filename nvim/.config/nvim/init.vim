@@ -22,6 +22,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" To enable more of the features of rust-analyzer, such as inlay hints and more!
+Plug 'simrat39/rust-tools.nvim'
+
 " colorscheme
 Plug 'rmehri01/onenord.nvim'
 
@@ -36,16 +39,30 @@ Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
-" Disale --INSERT-- (since using lightline
+" Disable --INSERT-- (since using lightline
 set noshowmode
 
 " configure telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope file_browser<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fs <cmd>Telescope grep_string<cr>
+nnoremap <silent> ff <cmd>Telescope find_files<cr>
+nnoremap <silent> fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> fb <cmd>Telescope file_browser<cr>
+nnoremap <silent> fb <cmd>Telescope buffers<cr>
+nnoremap <silent> fh <cmd>Telescope help_tags<cr>
+nnoremap <silent> fs <cmd>Telescope grep_string<cr>
+
+" configure lsp
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+set signcolumn=yes
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -62,7 +79,6 @@ set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set shiftwidth=4    " number of spaces to use for autoindent
 set expandtab       " tabs are space
-set autoindent
 set copyindent      " copy indent from the previous line
 
 " enable mouse
@@ -98,6 +114,35 @@ set splitright
 set splitbelow
 
 colorscheme onenord
+
+lua <<EOF
+local nvim_lsp = require'lspconfig'
+local opts = {
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
+    server = {
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    enable = true,
+                    command = "clippy",
+                    extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" },
+                },
+            }
+        }
+    },
+}
+
+
+require('rust-tools').setup(opts)
+EOF
 
 " Setup Completion
 " See https://github.com/hrsh7th/nvim-cmp#basic-configuration
