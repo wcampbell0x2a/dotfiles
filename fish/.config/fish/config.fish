@@ -21,3 +21,5 @@ export GPG_TTY=(tty)
 wmname LG3D
 
 starship init fish | source
+
+zoxide init fish | source
