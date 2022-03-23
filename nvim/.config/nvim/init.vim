@@ -184,12 +184,6 @@ cmp.setup({
 
 require('gitsigns').setup()
 
-local local_onenord = require'lualine.themes.onenord'
-local local_colors = require("onenord.colors")
-local_onenord.command.a.bg = local_colors.blue
-local_onenord.command.b.fg = local_colors.blue
-
-
 require'lualine'.setup {
   options = {
     icons_enabled = true,
