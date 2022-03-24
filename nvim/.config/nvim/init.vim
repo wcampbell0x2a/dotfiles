@@ -37,6 +37,8 @@ Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'ntpeters/vim-better-whitespace'
 
+Plug 'lewis6991/impatient.nvim'
+
 call plug#end()
 
 " Disable --INSERT-- (since using lightline
