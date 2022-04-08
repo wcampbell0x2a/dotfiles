@@ -1,4 +1,4 @@
-add_newline = false
+add_newline = true
 format="$all$directory$character"
 
 [hostname]
@@ -20,4 +20,7 @@ truncation_symbol = "../"
 truncate_to_repo = false
 
 [cmd_duration]
+disabled = true
+
+[python]
 disabled = true
