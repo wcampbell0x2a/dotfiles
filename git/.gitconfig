@@ -14,3 +14,9 @@
 	all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
 [rebase]
     instructionFormat = %s [%an]
+[pull]
+    rebase = true
+[mergetool]
+    path = nvim
+[mergetool "vimdiff"]
+	path = nvim
