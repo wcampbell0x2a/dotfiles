@@ -3,6 +3,11 @@ call plug#begin('~/.vim/plugged')
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'lewis6991/spellsitter.nvim'
+
+Plug 'jbyuki/venn.nvim'
+
 " Completion framework
 Plug 'hrsh7th/nvim-cmp'
 
@@ -118,6 +123,10 @@ set splitbelow
 colorscheme onenord
 
 lua <<EOF
+require('spellsitter').setup()
+EOF
+
+lua <<EOF
 local nvim_lsp = require'lspconfig'
 local opts = {
     tools = {
@@ -198,7 +207,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename'},
+    lualine_c = {{'filename', path = 1}},
     lualine_x = {'encoding', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
