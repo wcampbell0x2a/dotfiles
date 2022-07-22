@@ -40,8 +40,9 @@ get_plex_info(){
 
 current_bat()
 {
-	bat="$(cat /sys/class/power_supply/BAT0/capacity)"
-	echo "bat $bat%, "
+	bat0="$(cat /sys/class/power_supply/BAT0/capacity)"
+	bat1="$(cat /sys/class/power_supply/BAT1/capacity)"
+	echo "bat [$bat0%,$bat1%], "
 }
 
 cpu_usage()
