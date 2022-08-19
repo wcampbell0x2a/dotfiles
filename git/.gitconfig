@@ -11,7 +11,8 @@
 [push]
 	default = matching
 [alias]
-	all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
+    all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
+    sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
 [rebase]
     instructionFormat = %s [%an]
 [pull]
