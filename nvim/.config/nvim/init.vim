@@ -71,13 +71,6 @@ nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 
 set signcolumn=yes
 
-" Set completeopt to have a better completion experience
-" :help completeopt
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
-
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
@@ -123,10 +116,30 @@ set splitbelow
 colorscheme onenord
 
 lua <<EOF
+-- Spellsitter Setup
 require('spellsitter').setup()
-EOF
 
-lua <<EOF
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true}
+vim.api.nvim_set_option('updatetime', 300)
+
+-- Treesitter Plugin Setup
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "c", "lua", "rust", "python", "toml", "json", "bash", "cmake", "cpp", "go", "html", "make", "vim", "zig" },
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting=false,
+  },
+  ident = { enable = true },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
+}
+
+-- LSP Setup
 local nvim_lsp = require'lspconfig'
 local opts = {
     tools = {
@@ -153,11 +166,9 @@ local opts = {
 
 
 require('rust-tools').setup(opts)
-EOF
 
-" Setup Completion
-" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua <<EOF
+-- Setup Completion
+-- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 require('onenord').setup()
 
 local cmp = require'cmp'
