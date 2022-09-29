@@ -163,11 +163,11 @@ local opts = {
 
 
 require('rust-tools').setup(opts)
+require'rust-tools'.hover_actions.hover_actions()
 
--- Setup Completion
--- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 require('onenord').setup()
 
+-- Setup Completion
 local cmp = require'cmp'
 cmp.setup({
   -- Enable LSP snippets
