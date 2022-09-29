@@ -84,11 +84,6 @@ set copyindent      " copy indent from the previous line
 " enable mouse
 set mouse=a
 
-" Display tabs as errors
-set list
-set listchars=tab:I-
-match Error /\t/
-
 " highlight matching braces
 set showmatch
 
