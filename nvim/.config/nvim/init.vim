@@ -140,12 +140,15 @@ local nvim_lsp = require'lspconfig'
 -- rust-tools setup
 local opts = {
     tools = {
-        autoSetHints = true,
+        runnables = {
+            use_telescope = true
+        },
         inlay_hints = {
+            auto = true,
             show_parameter_hints = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
-            only_current_line = false,
+            only_current_line = true,
         },
     },
     server = {
