@@ -136,14 +136,16 @@ require('nvim-treesitter.configs').setup {
 
 -- LSP Setup
 local nvim_lsp = require'lspconfig'
+
+-- rust-tools setup
 local opts = {
     tools = {
         autoSetHints = true,
-        hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
+            only_current_line = false,
         },
     },
     server = {
