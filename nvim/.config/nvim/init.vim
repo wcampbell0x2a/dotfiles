@@ -46,7 +46,7 @@ Plug 'lewis6991/impatient.nvim'
 
 call plug#end()
 
-" Disable --INSERT-- (since using lightline
+" Disable --INSERT-- (since using lightline)
 set noshowmode
 
 " configure telescope
