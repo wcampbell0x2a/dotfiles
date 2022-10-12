@@ -43,6 +43,8 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'lewis6991/impatient.nvim'
 
+Plug 'm-demare/hlargs.nvim'
+
 call plug#end()
 
 " Disable --INSERT-- (since using lightline)
@@ -230,4 +232,10 @@ require'lualine'.setup {
   extensions = {}
 }
 require('lualine').setup()
+
+-- Highlight parameters with cyan with nvim-treesitter
+local colors = require("onenord.colors").load()
+require('hlargs').setup{
+    color = colors.cyan
+}
 EOF
