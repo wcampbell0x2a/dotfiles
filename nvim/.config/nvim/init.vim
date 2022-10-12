@@ -172,8 +172,7 @@ local opts = {
 
 require('rust-tools').setup(opts)
 require'rust-tools'.hover_actions.hover_actions()
-
-require('onenord').setup()
+require'rust-tools'.hover_range.hover_range()
 
 -- Setup Completion
 local cmp = require'cmp'
@@ -211,10 +210,11 @@ cmp.setup({
 
 require('gitsigns').setup()
 
+require('onenord').setup()
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = local_onenord,
+    theme = 'onenord',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
