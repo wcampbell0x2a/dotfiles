@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'lewis6991/spellsitter.nvim'
 
 Plug 'jbyuki/venn.nvim'
 
@@ -111,9 +110,6 @@ set splitbelow
 colorscheme onenord
 
 lua <<EOF
--- Spellsitter Setup
-require('spellsitter').setup()
-
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
 vim.api.nvim_set_option('updatetime', 300)
