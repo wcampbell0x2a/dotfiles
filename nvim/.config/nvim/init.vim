@@ -109,6 +109,9 @@ set splitbelow
 
 colorscheme onenord
 
+" set .h files as C language files
+let g:c_syntax_for_h = 1
+
 lua <<EOF
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
