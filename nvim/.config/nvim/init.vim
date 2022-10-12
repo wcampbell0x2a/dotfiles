@@ -119,22 +119,18 @@ vim.api.nvim_set_option('updatetime', 300)
 
 -- Treesitter Plugin Setup
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua", "rust", "python", "toml", "json", "bash", "cmake", "cpp", "go", "html", "make", "vim", "zig" },
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting=false,
-  },
-  ident = { enable = true },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  }
+    ensure_installed = "all",
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting=false,
+    },
+    ident = { enable = true },
 }
 
 -- LSP Setup
 local nvim_lsp = require'lspconfig'
+require("lspconfig").clangd.setup({})
 
 -- rust-tools setup
 local opts = {
