@@ -43,6 +43,14 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'lewis6991/impatient.nvim'
 
+Plug 'jbyuki/venn.nvim'
+
+Plug 'krady21/compiler-explorer.nvim'
+
+Plug 'stevearc/dressing.nvim'
+
+Plug 'rcarriga/nvim-notify'
+
 Plug 'm-demare/hlargs.nvim'
 
 call plug#end()
