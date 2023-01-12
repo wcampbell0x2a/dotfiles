@@ -5,15 +5,17 @@ lsp.ensure_installed({
   'clangd',     -- c
   'gopls',      -- go
   'sumneko_lua',-- lua
-  'pylsp',      -- lua
+  'pylsp',      -- python
 })
+
+-- use clippy for rust-analyzer
 local rust_settings = {
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
         allFeatures = true,
         command = "clippy",
-      }
+      },
     }
   },
 }
@@ -26,20 +28,10 @@ lsp.configure('rust_analyzer', {
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
-  if client.name == "eslint" then
-      vim.cmd [[ LspStop eslint ]]
-      return
-  end
-
   vim.keymap.set("n", "ga", function() vim.lsp.buf.code_action() end, opts)
 end)
 
 local rust_lsp = lsp.build_options('rust_analyzer', rust_settings)
-
-vim.diagnostic.config({
-    virtual_text = true,
-    underline = false
-})
 
 lsp.setup()
 
