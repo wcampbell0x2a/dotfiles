@@ -27,5 +27,7 @@ xscreensaver &
 # Needed for dunst
 systemctl --user import-environment DISPLAY
 
+dunst &
+
 # Start dwm
 exec dwm
