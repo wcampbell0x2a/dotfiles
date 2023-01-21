@@ -54,4 +54,5 @@ return require('packer').startup(function(use)
   use{'simrat39/rust-tools.nvim'}
   use{ "asiryk/auto-hlsearch.nvim", tag = "1.0.0" }
   use{'RaafatTurki/hex.nvim'}
+  use{'j-hui/fidget.nvim'}
 end)
