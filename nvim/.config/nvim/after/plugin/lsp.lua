@@ -4,7 +4,6 @@ lsp.preset('recommended')
 lsp.ensure_installed({
   'clangd',     -- c
   'gopls',      -- go
-  'sumneko_lua',-- lua
   'pylsp',      -- python
 })
 
