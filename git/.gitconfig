@@ -1,11 +1,7 @@
 [user]
 	signingkey = A0B3015BF635563FA57059D0A040F4DAFC68FFE8
-[diff]
-    tool = vimdiff
 [core]
     editor = nvim
-[difftool]
-    prompt = true
 [merge]
 	tool = vimdiff
 [push]
@@ -21,3 +17,13 @@
     path = nvim
 [mergetool "vimdiff"]
 	path = nvim
+
+# difftastic
+[diff]
+        tool = difftastic
+[difftool]
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+        difftool = true
