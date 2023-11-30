@@ -1,7 +1,7 @@
 [user]
 	signingkey = A0B3015BF635563FA57059D0A040F4DAFC68FFE8
 [core]
-    editor = nvim
+    editor = helix
 [merge]
 	tool = vimdiff
 [push]
