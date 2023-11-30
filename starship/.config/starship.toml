@@ -1,40 +1,35 @@
 add_newline = false
-format="$username$hostname$git_branch$git_commit$git_state$status$directory> "
+format="$username$hostname$git_branch$status$directory> "
 
-palette = "onenord"
+palette = "ayu_dark"
 
-# Define custom colors
-[palettes.onenord]
-fg = "#C8D0E0"
-fg_light = "#E5E9F0"
-bg = "#2E3440"
-gray = "#646A76"
-light_gray = "#6C7A96"
-cyan = "#88C0D0"
-blue = "#81A1C1"
-dark_blue = "#5E81AC"
-green = "#A3BE8C"
-light_green = "#8FBCBB"
-dark_red = "#BF616A"
-red = "#D57780"
-light_red = "#DE878F"
-pink = "#E85B7A"
-dark_pink = "#E44675"
-orange = "#D08F70"
-yellow = "#EBCB8B"
-purple = "#B988B0"
-light_purple = "#B48EAD"
-none = "NONE"
+# Ayu dark from helix
+[palettes.ayu_dark]
+background = "#0f1419"
+foreground = "#bfbdb6"
+black = "#131721"
+blue = "#59c2ff"
+dark_gray = "#2d3640"
+cyan = "#73b8ff"
+gray = "#5c6773"
+green = "#aad94c"
+magenta = "#d2a6ff"
+orange = "#ff8f40"
+red = "#f07178"
+yellow = "#e6b450"
 
 [hostname]
 ssh_only = false
-format =  "[$hostname](bold blue) "
+format =  "[$hostname](blue) "
 trim_at = ".companyname.com"
 disabled = false
 
+[git_branch]
+style = "fg:magenta"
+
 [username]
-style_user = "white bold"
-style_root = "black bold"
+style_user = "white"
+style_root = "black"
 format = "[$user]($style)@"
 disabled = false
 show_always = true
@@ -47,6 +42,11 @@ format = "[$path]($style)[$read_only]($read_only_style)"
 
 [cmd_duration]
 disabled = true
+
+[time]
+disabled = false
+style = "bright-black"
+format = "[$time]($style)"
 
 [line_break]
 disabled = true
