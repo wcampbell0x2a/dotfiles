@@ -17,6 +17,7 @@
     rebase = true
 [mergetool]
     path = nvim
+	conflictStyle = zdiff3
 [mergetool "vimdiff"]
 	path = nvim
 
