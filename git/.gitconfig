@@ -6,6 +6,7 @@
 	tool = vimdiff
 [push]
 	default = matching
+	autoSetupRemote = true
 [alias]
     all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
     sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
