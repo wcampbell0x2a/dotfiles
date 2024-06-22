@@ -11,6 +11,7 @@
     all = "!f(){ find -type d -name .git -prune | xargs -t -I{} git -C {}/../ $@; }; f"
     sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
 	graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+	rm-whitespace = sed 's/[ \t]*$//'
 [rebase]
     instructionFormat = %s [%an]
 	autosquash = true
