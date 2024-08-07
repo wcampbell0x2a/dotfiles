@@ -11,4 +11,6 @@ RUSTFLAGS="-C target-feature=+crt-static -C strip=symbols" cargo install --root 
   du-dust \
   hexyl \
   git-absorb \
-  svgbob_cli
+  svgbob_cli \
+  checksec \
+  repgrep
