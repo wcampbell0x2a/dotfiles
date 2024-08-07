@@ -1,0 +1,17 @@
+theme = "ayu_dark"
+
+[editor]
+cursorline = true
+cursorcolumn = true
+bufferline = "always"
+text-width = 120
+rulers = [121]
+
+# shrink line up with Shift-X
+[keys.normal]
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = ["extend_line_up", "extend_to_line_bounds"]
