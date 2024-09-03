@@ -7,6 +7,9 @@ bufferline = "always"
 text-width = 120
 rulers = [121]
 
+[editor.file-picker]
+hidden = false
+
 # shrink line up with Shift-X
 [keys.normal]
 A-x = "extend_to_line_bounds"
