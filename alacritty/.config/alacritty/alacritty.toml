@@ -26,11 +26,11 @@ foreground = "0xB3B1AD"
 size = 6
 
 [font.bold]
-family = "Cousine Nerd Font Mono"
+family = "Berkeley Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "Cousine Nerd Font Mono"
+family = "Berkeley Mono"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -38,11 +38,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Cousine Nerd Font Mono"
+family = "Berkeley Mono"
 style = "Italic"
 
 [font.normal]
-family = "Cousine Nerd Font Mono"
+family = "Berkeley Mono"
 style = "Regular"
 
 [font.offset]
