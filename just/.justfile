@@ -24,8 +24,8 @@ update-bins-static:
         svgbob_cli \
         checksec \
         repgrep \
-        just
-    cargo +stable install --git https://github.com/wcampbell0x2a/income.git --target x86_64-unknown-linux-musl --root ~/cargo_bins --locked
+        just \
+        income
     just dl-gh-wc zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
