@@ -4,6 +4,7 @@
     editor = helix
 [merge]
 	tool = vimdiff
+	conflictStyle = zdiff3
 [push]
 	default = matching
 	autoSetupRemote = true
