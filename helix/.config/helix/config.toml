@@ -6,6 +6,7 @@ cursorcolumn = true
 bufferline = "always"
 text-width = 120
 rulers = [121]
+auto-pairs = false
 
 [editor.file-picker]
 hidden = false
