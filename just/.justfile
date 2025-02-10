@@ -1,10 +1,10 @@
 set shell := ["bash", "-c"]
-export ZERUS_VER := "v0.10.0"
+export ZERUS_VER := "v0.11.0"
 export STATUSBAR_VER := "v0.3.5"
 export BACKHAND_VER := "v0.18.0"
 export KOKIRI_VER := "v0.1.2"
 export AFTERMATH_VER := "v0.1.1"
-export HERETEK_VER := "v0.4.0"
+export HERETEK_VER := "v0.5.0"
 export HELIX_VER := "25.01.1"
 export ALACRITTY_VER := "v0.15.0"
 
