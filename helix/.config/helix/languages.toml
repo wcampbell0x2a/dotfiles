@@ -6,6 +6,10 @@ command = "harper-ls"
 args = ["--stdio"]
 
 [[language]]
+name = "rust"
+language-servers = [ "rust-analyzer", "harper-ls" ]
+
+[[language]]
 name = "c"
 formatter = { command = "clang-format", args = ["--style=file"] }
 auto-format = true
