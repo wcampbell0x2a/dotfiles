@@ -4,17 +4,20 @@ export STATUSBAR_VER := "v0.3.5"
 export BACKHAND_VER := "v0.21.0"
 export KOKIRI_VER := "v0.1.2"
 export AFTERMATH_VER := "v0.1.1"
-export HERETEK_VER := "v0.5.0"
+export HERETEK_VER := "v0.5.1"
 export HELIX_VER := "25.01.1"
 export ALACRITTY_VER := "v0.15.1"
 export DIFFTASTIC_VER := "0.63.0"
+export MERGIRAF_VER := "v0.7.0"
+# Version of rust to use for build container
 export RUST_VER := "1.85.1"
+export STARSHIP_VER := "v1.23.0"
 
 dl-gh-wc URL:
-    just dl-gh https://github.com/wcampbell0x2a/{{URL}}
+    just dl-tar https://github.com/wcampbell0x2a/{{URL}}
 
-dl-gh URL:
-    curl -sL {{URL}} | tar xz -C ~/cargo_bins/bin
+dl-tar URL:
+    curl -sL {{URL}} | tar xz -C ~/offline/bin
 
 update-offline-cargo-crates:
     rm -rf ~/offline/cargo
@@ -41,7 +44,7 @@ update-offline-cargo-crates:
         cargo-expand \
         cargo-bloat
 
-update-offline-gh:
+update-offline-dl:
     # install from github releases
     just dl-gh-wc zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
@@ -49,7 +52,9 @@ update-offline-gh:
     just dl-gh-wc kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
 
 update-offline-bins:
     # cargo cross git source
@@ -97,4 +102,4 @@ update-offline-other:
     # font
     curl -svL https://wcampbell.dev/public/berkeley-mono-typeface-zero.zip -o ~/offline/berkely-mono-typeface-zero.zip
 
-update-offline: update-offline-cargo-crates update-offline-gh update-offline-bins update-offline-other
+update-offline: update-offline-cargo-crates update-offline-dl update-offline-bins update-offline-other
