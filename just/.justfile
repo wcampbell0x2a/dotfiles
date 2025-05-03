@@ -1,4 +1,9 @@
 set shell := ["bash", "-c"]
+
+# Version of rust to use for build container
+export RUST_VER := "1.85.1"
+
+# Progam versions
 export ZERUS_VER := "v0.11.0"
 export STATUSBAR_VER := "v0.3.5"
 export BACKHAND_VER := "v0.21.0"
@@ -9,35 +14,45 @@ export HELIX_VER := "25.01.1"
 export ALACRITTY_VER := "v0.15.1"
 export DIFFTASTIC_VER := "0.63.0"
 export MERGIRAF_VER := "v0.7.0"
-# Version of rust to use for build container
-export RUST_VER := "1.85.1"
 export STARSHIP_VER := "v1.23.0"
+export JUST_VER := "1.40.0"
+export HEXYL_VER := "v0.16.0"
+export GIT_ABSORB_VER := "0.8.0"
+export EZA_VER := "v0.21.3"
+export DUST_VER := "v1.2.0"
+export ZOXIDE_VER := "0.9.7"
+export RIPGREP_VER := "14.1.1"
+export BAT_VER := "v0.25.0"
+export FD_VER := "v10.2.0"
+export VIVID_VER := "v0.10.1"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
 
+# Extract entire tar
 dl-tar URL:
     curl -sL {{URL}} | tar xz -C ~/offline/bin
 
+# Extract single file in tar
+dl-tar-file URL FILE:
+    curl -sL {{URL}} | tar xz -C ~/offline/bin {{FILE}} 
+
+# Extract single file in tar, in folder that needs to be deleted
+dl-tar-file-rm-folder URL FILE:
+    just dl-tar-file {{URL}} {{FILE}}
+    mv ~/offline/bin/{{FILE}} ~/offline/bin/$(basename {{FILE}})
+    rm -rf ~/offline/bin/$(dirname {{FILE}})
+
 update-offline-cargo-crates:
+    @echo {{BLUE}}Updating offline built cargo bins {{NORMAL}}
     rm -rf ~/offline/cargo
 
     # static musl no-symbols from crates.io
     set -e RUSTFLAGS="-C target-feature=+crt-static -C strip=symbols"
     cargo +stable install --target x86_64-unknown-linux-musl --root ~/offline/cargo --locked \
-        vivid \
-        fd-find \
-        bat \
         ropr \
-        exa \
-        zoxide \
-        du-dust \
-        hexyl \
-        git-absorb \
         svgbob_cli \
         checksec \
-        repgrep \
-        just \
         income \
         heh \
         cargo-asm \
@@ -45,23 +60,36 @@ update-offline-cargo-crates:
         cargo-bloat
 
 update-offline-dl:
+    @echo {{BLUE}}Updating offline downloaded bins {{NORMAL}}
+    mkdir -p ~/offline/bin
     # install from github releases
-    just dl-gh-wc zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
-    just dl-tar https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc              heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file           https://github.com/casey/just/releases/download/$JUST_VER/just-$JUST_VER-x86_64-unknown-linux-musl.tar.gz just
+    just dl-tar-file-rm-folder https://github.com/sharkdp/hexyl/releases/download/$HEXYL_VER/hexyl-$HEXYL_VER-x86_64-unknown-linux-musl.tar.gz hexyl-v0.16.0-x86_64-unknown-linux-musl/hexyl
+    just dl-tar-file-rm-folder https://github.com/tummychow/git-absorb/releases/download/$GIT_ABSORB_VER/git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl.tar.gz git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl/git-absorb
+    just dl-tar                https://github.com/eza-community/eza/releases/download/$EZA_VER/eza_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file-rm-folder https://github.com/bootandy/dust/releases/download/$DUST_VER/dust-$DUST_VER-x86_64-unknown-linux-musl.tar.gz dust-$DUST_VER-x86_64-unknown-linux-musl/dust
+    just dl-tar-file           https://github.com/ajeetdsouza/zoxide/releases/download/v$ZOXIDE_VER/zoxide-$ZOXIDE_VER-x86_64-unknown-linux-musl.tar.gz zoxide
+    just dl-tar-file-rm-folder https://github.com/BurntSushi/ripgrep/releases/download/$RIPGREP_VER/ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl.tar.gz ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl/rg
+    just dl-tar-file-rm-folder https://github.com/sharkdp/bat/releases/download/$BAT_VER/bat-$BAT_VER-x86_64-unknown-linux-musl.tar.gz bat-$BAT_VER-x86_64-unknown-linux-musl/bat
+    just dl-tar-file-rm-folder https://github.com/sharkdp/fd/releases/download/$FD_VER/fd-$FD_VER-x86_64-unknown-linux-musl.tar.gz fd-$FD_VER-x86_64-unknown-linux-musl/fd
+    just dl-tar-file-rm-folder https://github.com/sharkdp/vivid/releases/download/$VIVID_VER/vivid-$VIVID_VER-x86_64-unknown-linux-musl.tar.gz vivid-$VIVID_VER-x86_64-unknown-linux-musl/vivid
 
 update-offline-bins:
+    @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
     # cargo cross git source
     cargo +stable install --target x86_64-unknown-linux-musl --root ~/offline --locked \
         cross --git https://github.com/cross-rs/cross
 
-    # harpser-ls needs to be built dynamic, so we just use scuba image of an old debian
+    # harper-ls needs to be built dynamic, so we just use scuba image of an old debian
     set -e RUSTFLAGS="-C target-feature=-crt-static -C strip=symbols"
     tmpdir=$(mktemp -d) && pushd $tmpdir \
         && scuba --image rust:$RUST_VER-bullseye cargo install harper-ls --locked --root ./offline \
@@ -93,6 +121,7 @@ update-offline-bins:
     curl -svL https://static.rust-lang.org/dist/rust-$RUST_VER-x86_64-unknown-linux-gnu.tar.xz -o ~/offline/rust-$RUST_VER-x86_64-unknown-linux-gnu.tar.xz
 
 update-offline-other:
+    @echo {{BLUE}}Updating offline other {{NORMAL}}
     # my dotfile
     tmpdir=$(mktemp -d) && pushd $tmpdir \
         && git clone https://github.com/wcampbell0x2a/dotfiles.git \
@@ -103,3 +132,4 @@ update-offline-other:
     curl -svL https://wcampbell.dev/public/berkeley-mono-typeface-zero.zip -o ~/offline/berkely-mono-typeface-zero.zip
 
 update-offline: update-offline-cargo-crates update-offline-dl update-offline-bins update-offline-other
+    @echo {{BLUE}}Updated ~/offline {{NORMAL}}
