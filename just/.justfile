@@ -27,6 +27,7 @@ export FD_VER := "v10.2.0"
 export VIVID_VER := "v0.10.1"
 export HYPERFINE_VER := "v1.19.0"
 export NEXTEST_VER := "0.9.98"
+export CARGO_LLVM_COV_VER := "v0.6.16"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -86,6 +87,7 @@ update-offline-dl:
     just dl-tar-file-rm-folder https://github.com/sharkdp/vivid/releases/download/$VIVID_VER/vivid-$VIVID_VER-x86_64-unknown-linux-musl.tar.gz vivid-$VIVID_VER-x86_64-unknown-linux-musl/vivid
     just dl-tar-file-rm-folder https://github.com/sharkdp/hyperfine/releases/download/$HYPERFINE_VER/hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl.tar.gz hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl/hyperfine
     just dl-tar                https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-$NEXTEST_VER/cargo-nextest-$NEXTEST_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                https://github.com/taiki-e/cargo-llvm-cov/releases/download/$CARGO_LLVM_COV_VER/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
