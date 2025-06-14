@@ -28,6 +28,7 @@ export VIVID_VER := "v0.10.1"
 export HYPERFINE_VER := "v1.19.0"
 export NEXTEST_VER := "0.9.98"
 export CARGO_LLVM_COV_VER := "v0.6.16"
+export CARGO_INSTA_VER := "1.43.1"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -39,6 +40,16 @@ dl-tar URL:
 # Extract single file in tar
 dl-tar-file URL FILE:
     curl -sL {{URL}} | tar xz -C ~/offline/bin {{FILE}} 
+
+# Extract single file in tar
+dl-tar-file-xvJ URL FILE:
+    curl -sL {{URL}} | tar xvJ -C ~/offline/bin {{FILE}} 
+
+# Extract single file in tar, in folder that needs to be deleted
+dl-tar-file-rm-folder-xvJ URL FILE:
+    just dl-tar-file-xvJ {{URL}} {{FILE}}
+    mv ~/offline/bin/{{FILE}} ~/offline/bin/$(basename {{FILE}})
+    rm -rf ~/offline/bin/$(dirname {{FILE}})
 
 # Extract single file in tar, in folder that needs to be deleted
 dl-tar-file-rm-folder URL FILE:
@@ -66,28 +77,29 @@ update-offline-dl:
     @echo {{BLUE}}Updating offline downloaded bins {{NORMAL}}
     mkdir -p ~/offline/bin
     # install from github releases
-    just dl-gh-wc              zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc              statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc              backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc              kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc              aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-gh-wc              heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar                https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar                https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
-    just dl-tar                https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar-file           https://github.com/casey/just/releases/download/$JUST_VER/just-$JUST_VER-x86_64-unknown-linux-musl.tar.gz just
-    just dl-tar-file-rm-folder https://github.com/sharkdp/hexyl/releases/download/$HEXYL_VER/hexyl-$HEXYL_VER-x86_64-unknown-linux-musl.tar.gz hexyl-v0.16.0-x86_64-unknown-linux-musl/hexyl
-    just dl-tar-file-rm-folder https://github.com/tummychow/git-absorb/releases/download/$GIT_ABSORB_VER/git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl.tar.gz git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl/git-absorb
-    just dl-tar                https://github.com/eza-community/eza/releases/download/$EZA_VER/eza_x86_64-unknown-linux-musl.tar.gz
-    just dl-tar-file-rm-folder https://github.com/bootandy/dust/releases/download/$DUST_VER/dust-$DUST_VER-x86_64-unknown-linux-musl.tar.gz dust-$DUST_VER-x86_64-unknown-linux-musl/dust
-    just dl-tar-file           https://github.com/ajeetdsouza/zoxide/releases/download/v$ZOXIDE_VER/zoxide-$ZOXIDE_VER-x86_64-unknown-linux-musl.tar.gz zoxide
-    just dl-tar-file-rm-folder https://github.com/BurntSushi/ripgrep/releases/download/$RIPGREP_VER/ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl.tar.gz ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl/rg
-    just dl-tar-file-rm-folder https://github.com/sharkdp/bat/releases/download/$BAT_VER/bat-$BAT_VER-x86_64-unknown-linux-musl.tar.gz bat-$BAT_VER-x86_64-unknown-linux-musl/bat
-    just dl-tar-file-rm-folder https://github.com/sharkdp/fd/releases/download/$FD_VER/fd-$FD_VER-x86_64-unknown-linux-musl.tar.gz fd-$FD_VER-x86_64-unknown-linux-musl/fd
-    just dl-tar-file-rm-folder https://github.com/sharkdp/vivid/releases/download/$VIVID_VER/vivid-$VIVID_VER-x86_64-unknown-linux-musl.tar.gz vivid-$VIVID_VER-x86_64-unknown-linux-musl/vivid
-    just dl-tar-file-rm-folder https://github.com/sharkdp/hyperfine/releases/download/$HYPERFINE_VER/hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl.tar.gz hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl/hyperfine
-    just dl-tar                https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-$NEXTEST_VER/cargo-nextest-$NEXTEST_VER-x86_64-unknown-linux-musl.tar.gz
-    just dl-tar                https://github.com/taiki-e/cargo-llvm-cov/releases/download/$CARGO_LLVM_COV_VER/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                    https://github.com/Wilfred/difftastic/releases/download/$DIFFTASTIC_VER/difft-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                    https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                    https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file               https://github.com/casey/just/releases/download/$JUST_VER/just-$JUST_VER-x86_64-unknown-linux-musl.tar.gz just
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/hexyl/releases/download/$HEXYL_VER/hexyl-$HEXYL_VER-x86_64-unknown-linux-musl.tar.gz hexyl-v0.16.0-x86_64-unknown-linux-musl/hexyl
+    just dl-tar-file-rm-folder     https://github.com/tummychow/git-absorb/releases/download/$GIT_ABSORB_VER/git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl.tar.gz git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl/git-absorb
+    just dl-tar                    https://github.com/eza-community/eza/releases/download/$EZA_VER/eza_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file-rm-folder     https://github.com/bootandy/dust/releases/download/$DUST_VER/dust-$DUST_VER-x86_64-unknown-linux-musl.tar.gz dust-$DUST_VER-x86_64-unknown-linux-musl/dust
+    just dl-tar-file               https://github.com/ajeetdsouza/zoxide/releases/download/v$ZOXIDE_VER/zoxide-$ZOXIDE_VER-x86_64-unknown-linux-musl.tar.gz zoxide
+    just dl-tar-file-rm-folder     https://github.com/BurntSushi/ripgrep/releases/download/$RIPGREP_VER/ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl.tar.gz ripgrep-$RIPGREP_VER-x86_64-unknown-linux-musl/rg
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/bat/releases/download/$BAT_VER/bat-$BAT_VER-x86_64-unknown-linux-musl.tar.gz bat-$BAT_VER-x86_64-unknown-linux-musl/bat
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/fd/releases/download/$FD_VER/fd-$FD_VER-x86_64-unknown-linux-musl.tar.gz fd-$FD_VER-x86_64-unknown-linux-musl/fd
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/vivid/releases/download/$VIVID_VER/vivid-$VIVID_VER-x86_64-unknown-linux-musl.tar.gz vivid-$VIVID_VER-x86_64-unknown-linux-musl/vivid
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/hyperfine/releases/download/$HYPERFINE_VER/hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl.tar.gz hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl/hyperfine
+    just dl-tar                    https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-$NEXTEST_VER/cargo-nextest-$NEXTEST_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar                    https://github.com/taiki-e/cargo-llvm-cov/releases/download/$CARGO_LLVM_COV_VER/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file-rm-folder-xvJ https://github.com/mitsuhiko/insta/releases/download/$CARGO_INSTA_VER/cargo-insta-x86_64-unknown-linux-musl.tar.xz cargo-insta-x86_64-unknown-linux-musl/cargo-insta
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
