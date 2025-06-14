@@ -21,4 +21,4 @@ set line-graphics		= default	# Enum: ascii, default, utf-8
 
 set mouse               = yes
 
-color cursor            black   yellow bold
+color cursor            black   blue bold
