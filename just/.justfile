@@ -29,6 +29,7 @@ export HYPERFINE_VER := "v1.19.0"
 export NEXTEST_VER := "0.9.98"
 export CARGO_LLVM_COV_VER := "v0.6.16"
 export CARGO_INSTA_VER := "1.43.1"
+export CARGO_FUZZ_VER := "0.12.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -100,6 +101,7 @@ update-offline-dl:
     just dl-tar                    https://github.com/nextest-rs/nextest/releases/download/cargo-nextest-$NEXTEST_VER/cargo-nextest-$NEXTEST_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-tar                    https://github.com/taiki-e/cargo-llvm-cov/releases/download/$CARGO_LLVM_COV_VER/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
     just dl-tar-file-rm-folder-xvJ https://github.com/mitsuhiko/insta/releases/download/$CARGO_INSTA_VER/cargo-insta-x86_64-unknown-linux-musl.tar.xz cargo-insta-x86_64-unknown-linux-musl/cargo-insta
+    just dl-tar                    https://github.com/rust-fuzz/cargo-fuzz/releases/download/$CARGO_FUZZ_VER/cargo-fuzz-$CARGO_FUZZ_VER-x86_64-unknown-linux-musl.tar.gz
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
