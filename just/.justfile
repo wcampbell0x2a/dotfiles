@@ -25,6 +25,7 @@ export RIPGREP_VER := "14.1.1"
 export BAT_VER := "v0.25.0"
 export FD_VER := "v10.2.0"
 export VIVID_VER := "v0.10.1"
+export HYPERFINE_VER := "v1.19.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -82,6 +83,7 @@ update-offline-dl:
     just dl-tar-file-rm-folder https://github.com/sharkdp/bat/releases/download/$BAT_VER/bat-$BAT_VER-x86_64-unknown-linux-musl.tar.gz bat-$BAT_VER-x86_64-unknown-linux-musl/bat
     just dl-tar-file-rm-folder https://github.com/sharkdp/fd/releases/download/$FD_VER/fd-$FD_VER-x86_64-unknown-linux-musl.tar.gz fd-$FD_VER-x86_64-unknown-linux-musl/fd
     just dl-tar-file-rm-folder https://github.com/sharkdp/vivid/releases/download/$VIVID_VER/vivid-$VIVID_VER-x86_64-unknown-linux-musl.tar.gz vivid-$VIVID_VER-x86_64-unknown-linux-musl/vivid
+    just dl-tar-file-rm-folder https://github.com/sharkdp/hyperfine/releases/download/$HYPERFINE_VER/hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl.tar.gz hyperfine-$HYPERFINE_VER-x86_64-unknown-linux-musl/hyperfine
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
