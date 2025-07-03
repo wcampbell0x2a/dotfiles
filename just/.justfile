@@ -30,6 +30,7 @@ export NEXTEST_VER := "0.9.98"
 export CARGO_LLVM_COV_VER := "v0.6.16"
 export CARGO_INSTA_VER := "1.43.1"
 export CARGO_FUZZ_VER := "0.12.0"
+export OUTSIDER_VER := "v0.2.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -81,6 +82,7 @@ update-offline-dl:
     just dl-gh-wc                  zerus/releases/download/$ZERUS_VER/zerus-$ZERUS_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc                  statusbar/releases/download/$STATUSBAR_VER/statusbar-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc                  backhand/releases/download/$BACKHAND_VER/backhand-$BACKHAND_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-gh-wc                  outsider/releases/download/$OUTSIDER_VER/outsider-$OUTSIDER_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc                  kokiri/releases/download/$KOKIRI_VER/kokiri-$KOKIRI_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc                  aftermath/releases/download/$AFTERMATH_VER/aftermath-bin-$AFTERMATH_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-gh-wc                  heretek/releases/download/$HERETEK_VER/heretek-$HERETEK_VER-x86_64-unknown-linux-musl.tar.gz
