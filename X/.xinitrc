@@ -24,6 +24,9 @@ usb-notify &
 
 xscreensaver &
 
+# init mergiraf
+mergiraf languages --gitattributes >> ~/.gitattributes
+
 # Needed for dunst
 systemctl --user import-environment DISPLAY
 
