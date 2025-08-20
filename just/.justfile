@@ -30,7 +30,7 @@ export NEXTEST_VER := "0.9.101"
 export CARGO_LLVM_COV_VER := "v0.6.17"
 export CARGO_INSTA_VER := "1.43.1"
 export CARGO_FUZZ_VER := "0.13.1"
-export OUTSIDER_VER := "v0.2.0"
+export OUTSIDER_VER := "v0.3.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
