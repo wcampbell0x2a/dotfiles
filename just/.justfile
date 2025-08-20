@@ -31,6 +31,8 @@ export CARGO_LLVM_COV_VER := "v0.6.17"
 export CARGO_INSTA_VER := "1.43.1"
 export CARGO_FUZZ_VER := "0.13.1"
 export OUTSIDER_VER := "v0.3.0"
+export RUFF_VER := "0.12.8"
+export BTM_VER := "0.11.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -104,6 +106,8 @@ update-offline-dl:
     just dl-tar                    https://github.com/taiki-e/cargo-llvm-cov/releases/download/$CARGO_LLVM_COV_VER/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
     just dl-tar-file-rm-folder-xvJ https://github.com/mitsuhiko/insta/releases/download/$CARGO_INSTA_VER/cargo-insta-x86_64-unknown-linux-musl.tar.xz cargo-insta-x86_64-unknown-linux-musl/cargo-insta
     just dl-tar                    https://github.com/rust-fuzz/cargo-fuzz/releases/download/$CARGO_FUZZ_VER/cargo-fuzz-$CARGO_FUZZ_VER-x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file-rm-folder     https://github.com/astral-sh/ruff/releases/download/$RUFF_VER/ruff-x86_64-unknown-linux-musl.tar.gz ruff-x86_64-unknown-linux-musl/ruff
+    just dl-tar                    https://github.com/ClementTsang/bottom/releases/download/$BTM_VER/bottom_x86_64-unknown-linux-musl.tar.gz
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
