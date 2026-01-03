@@ -24,6 +24,8 @@ starship init fish | source
 
 zoxide init fish | source
 
+alias hx helix
+
 # ayu dark 
 set --universal fish_color_autosuggestion 4D5566 # ayu:common.ui        autosuggestions
 set --universal fish_color_command        39BAE6 # ayu:syntax.tag       commands
