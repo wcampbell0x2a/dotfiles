@@ -2,7 +2,7 @@
 ~/scripts/statusbar.sh &
 
 # Load Wallpaper
-feh --bg-fill ~/wallpapers/the-great-wave.png
+feh --bg-fill ~/wallpapers/dune.png
 
 # Load fonts
 xset +fp /usr/share/fonts/local/
