@@ -7,6 +7,7 @@ bufferline = "always"
 text-width = 120
 rulers = [121]
 auto-pairs = false
+true-color = true
 
 [editor.file-picker]
 hidden = false
