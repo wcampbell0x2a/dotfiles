@@ -9,14 +9,23 @@ rulers = [121]
 auto-pairs = false
 true-color = true
 
+# [editor.soft-wrap]
+# enable = true
+
 [editor.file-picker]
 hidden = false
 
-# shrink line up with Shift-X
 [keys.normal]
+# shrink line up with Shift-X
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
+# H = "move_prev_sub_word_start"
+# L = "move_next_sub_word_start"
 
 [keys.select]
+# shrink line up with Shift-X
 A-x = "extend_to_line_bounds"
 X = ["extend_line_up", "extend_to_line_bounds"]
+# better selection
+# H = "extend_prev_sub_word_start"
+# L = "extend_next_sub_word_start"
