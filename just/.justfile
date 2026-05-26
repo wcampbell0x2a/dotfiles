@@ -2,6 +2,8 @@ set shell := ["bash", "-c"]
 
 # Version of rust to use for build container
 export RUST_VER := "1.85.1"
+# Version of deb used for dynamic libc requirements
+export DEB_VER := "bullseye"
 
 # Progam versions
 export ZERUS_VER := "v0.11.0"
@@ -118,7 +120,7 @@ update-offline-bins:
     # harper-ls needs to be built dynamic, so we just use scuba image of an old debian
     set -e RUSTFLAGS="-C target-feature=-crt-static -C strip=symbols"
     tmpdir=$(mktemp -d) && pushd $tmpdir \
-        && scuba --image rust:$RUST_VER-bullseye cargo install harper-ls --locked --root ./offline \
+        && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo install harper-ls --locked --root ./offline \
         && mv offline/bin/harper-ls ~/offline/bin/ \
         && popd && rm -rf $tmpdir
 
@@ -127,7 +129,7 @@ update-offline-bins:
     tmpdir=$(mktemp -d) && pushd $tmpdir \
         && git clone https://github.com/helix-editor/helix --branch $HELIX_VER \
         && cd helix \
-        && scuba --image rust:$RUST_VER-bullseye cargo build --release -p helix-term --target x86_64-unknown-linux-gnu \
+        && scuba --image rust:$RUST_VER-$DEB_VER cargo build --release -p helix-term --target x86_64-unknown-linux-gnu \
         && mv ./target/x86_64-unknown-linux-gnu/release/hx ~/offline/hx \
         && tar -cvzf ~/offline/helix-runtime.tar.gz runtime \
         && popd && rm -rf $tmpdir
