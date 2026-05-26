@@ -1,6 +1,10 @@
 [language-server.rust-analyzer.config]
 cargo = { features = "all" }
 diagnostics.disabled = ["inactive-code"]
+numThreads = 2
+
+[language-server.rust-analyzer.environment]
+CARGO_TARGET_DIR = "target/analyzer"
 
 [language-server.harper-ls]
 command = "harper-ls"
