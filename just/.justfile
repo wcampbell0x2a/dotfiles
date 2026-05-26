@@ -1,7 +1,7 @@
 set shell := ["bash", "-c"]
 
 # Version of rust to use for build container
-export RUST_VER := "1.85.1"
+export RUST_VER := "1.89.0"
 # Version of deb used for dynamic libc requirements
 export DEB_VER := "bullseye"
 
