@@ -1,10 +1,13 @@
 [user]
 	signingkey = A0B3015BF635563FA57059D0A040F4DAFC68FFE8
 [core]
-    editor = helix
+    editor = hx
+    attributesfile = ~/.gitattributes
 [merge]
-	tool = vimdiff
-	conflictStyle = zdiff3
+    conflictStyle = "diff3"
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [push]
 	default = matching
 	autoSetupRemote = true
@@ -15,25 +18,46 @@
 	rm-whitespace = sed 's/[ \t]*$//'
 [rebase]
     instructionFormat = %s [%an]
-	autosquash = true
+	autoSquash = true
+	autoStash = true
 	updateRefs = true
 [pull]
     rebase = true
-[mergetool]
-    path = nvim
-	conflictStyle = zdiff3
-[mergetool "vimdiff"]
-	path = nvim
-
-# difftastic
 [diff]
-        tool = difftastic
+	# difftastic
+    external = difft
 [difftool]
-        prompt = false
-[difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
-[pager]
-        difftool = true
+    # Run the difftool immediately, don't ask 'are you sure' each time.
+    prompt = false
 
+[pager]
+    # Use a pager if the difftool output is larger than one screenful,
+    # consistent with the behaviour of `git diff`.
+    difftool = true
+
+[diff]
+    # Set difftastic as the default difftool, so we don't need to specify
+    # `-t difftastic` every time.
+    tool = difft
+
+[diff]
+	algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [rerere]
 	enabled = true
+	autoupdate = true
+[column]
+	ui = auto
+[branch]
+	sort = -commiterdate
+[tag]
+	sort = version:refname
+[commit]
+	verbose = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
