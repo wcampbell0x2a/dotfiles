@@ -1,40 +1,40 @@
 set shell := ["bash", "-c"]
 
 # Version of rust to use for build container
-export RUST_VER := "1.89.0"
+export RUST_VER := "1.95.0"
 # Version of deb used for dynamic libc requirements
 export DEB_VER := "bullseye"
 
 # Progam versions
-export ZERUS_VER := "v0.11.0"
-export STATUSBAR_VER := "v0.3.5"
-export BACKHAND_VER := "v0.23.0"
+export ZERUS_VER := "v0.13.0"
+export STATUSBAR_VER := "v0.5.2"
+export BACKHAND_VER := "v0.25.1"
 export KOKIRI_VER := "v0.1.2"
 export AFTERMATH_VER := "v0.1.1"
-export HERETEK_VER := "v0.6.0"
-export HELIX_VER := "25.07"
-export ALACRITTY_VER := "v0.15.1"
-export DIFFTASTIC_VER := "0.64.0"
-export MERGIRAF_VER := "v0.7.0"
-export STARSHIP_VER := "v1.23.0"
-export JUST_VER := "1.42.0"
-export HEXYL_VER := "v0.16.0"
-export GIT_ABSORB_VER := "0.8.0"
-export EZA_VER := "v0.22.1"
-export DUST_VER := "v1.2.2"
-export ZOXIDE_VER := "0.9.8"
-export RIPGREP_VER := "14.1.1"
-export BAT_VER := "v0.25.0"
-export FD_VER := "v10.2.0"
-export VIVID_VER := "v0.10.1"
-export HYPERFINE_VER := "v1.19.0"
-export NEXTEST_VER := "0.9.101"
-export CARGO_LLVM_COV_VER := "v0.6.17"
-export CARGO_INSTA_VER := "1.43.1"
+export HERETEK_VER := "v0.8.0"
+export HELIX_VER := "25.07.1"
+export ALACRITTY_VER := "v0.17.0"
+export DIFFTASTIC_VER := "0.69.0"
+export MERGIRAF_VER := "v0.17.0"
+export STARSHIP_VER := "v1.25.1"
+export JUST_VER := "1.51.0"
+export HEXYL_VER := "v0.17.0"
+export GIT_ABSORB_VER := "0.9.0"
+export EZA_VER := "v0.23.4"
+export DUST_VER := "v1.2.4"
+export ZOXIDE_VER := "0.9.9"
+export RIPGREP_VER := "15.1.0"
+export BAT_VER := "v0.26.1"
+export FD_VER := "v10.4.2"
+export VIVID_VER := "v0.11.1"
+export HYPERFINE_VER := "v1.20.0"
+export NEXTEST_VER := "0.9.136"
+export CARGO_LLVM_COV_VER := "v0.8.7"
+export CARGO_INSTA_VER := "1.47.2"
 export CARGO_FUZZ_VER := "0.13.1"
-export OUTSIDER_VER := "v0.3.0"
-export RUFF_VER := "0.12.8"
-export BTM_VER := "0.11.0"
+export OUTSIDER_VER := "v0.4.1"
+export RUFF_VER := "0.15.14"
+export BTM_VER := "0.12.3"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -65,7 +65,6 @@ dl-tar-file-rm-folder URL FILE:
 
 update-offline-cargo-crates:
     @echo {{BLUE}}Updating offline built cargo bins {{NORMAL}}
-    rm -rf ~/offline/cargo
 
     # static musl no-symbols from crates.io
     set -e RUSTFLAGS="-C target-feature=+crt-static -C strip=symbols"
@@ -94,7 +93,7 @@ update-offline-dl:
     just dl-tar                    https://codeberg.org/mergiraf/mergiraf/releases/download/$MERGIRAF_VER/mergiraf_x86_64-unknown-linux-musl.tar.gz
     just dl-tar                    https://github.com/starship/starship/releases/download/$STARSHIP_VER/starship-x86_64-unknown-linux-musl.tar.gz
     just dl-tar-file               https://github.com/casey/just/releases/download/$JUST_VER/just-$JUST_VER-x86_64-unknown-linux-musl.tar.gz just
-    just dl-tar-file-rm-folder     https://github.com/sharkdp/hexyl/releases/download/$HEXYL_VER/hexyl-$HEXYL_VER-x86_64-unknown-linux-musl.tar.gz hexyl-v0.16.0-x86_64-unknown-linux-musl/hexyl
+    just dl-tar-file-rm-folder     https://github.com/sharkdp/hexyl/releases/download/$HEXYL_VER/hexyl-$HEXYL_VER-x86_64-unknown-linux-musl.tar.gz hexyl-$HEXYL_VER-x86_64-unknown-linux-musl/hexyl
     just dl-tar-file-rm-folder     https://github.com/tummychow/git-absorb/releases/download/$GIT_ABSORB_VER/git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl.tar.gz git-absorb-$GIT_ABSORB_VER-x86_64-unknown-linux-musl/git-absorb
     just dl-tar                    https://github.com/eza-community/eza/releases/download/$EZA_VER/eza_x86_64-unknown-linux-musl.tar.gz
     just dl-tar-file-rm-folder     https://github.com/bootandy/dust/releases/download/$DUST_VER/dust-$DUST_VER-x86_64-unknown-linux-musl.tar.gz dust-$DUST_VER-x86_64-unknown-linux-musl/dust
@@ -119,30 +118,31 @@ update-offline-bins:
 
     # harper-ls needs to be built dynamic, so we just use scuba image of an old debian
     set -e RUSTFLAGS="-C target-feature=-crt-static -C strip=symbols"
-    tmpdir=$(mktemp -d) && pushd $tmpdir \
+    mkdir -p ~/offline/build-cache/harper-ls && pushd ~/offline/build-cache/harper-ls \
         && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo install harper-ls --locked --root ./offline \
         && mv offline/bin/harper-ls ~/offline/bin/ \
-        && popd && rm -rf $tmpdir
+        && popd
 
     # helix needs to be built dynamic, so we just use scuba image of an old debian
     set -e RUSTFLAGS="-C target-feature=-crt-static -C strip=symbols"
-    tmpdir=$(mktemp -d) && pushd $tmpdir \
-        && git clone https://github.com/helix-editor/helix --branch $HELIX_VER \
+    mkdir -p ~/offline/build-cache && pushd ~/offline/build-cache \
+        && ([ -d helix ] && cd helix && git fetch --tags && git checkout $HELIX_VER || git clone https://github.com/helix-editor/helix --branch $HELIX_VER) \
         && cd helix \
-        && scuba --image rust:$RUST_VER-$DEB_VER cargo build --release -p helix-term --target x86_64-unknown-linux-gnu \
+        && sed -i 's|dannylongeuay/tree-sitter-go-template", rev = "395a33e08e69f4155156f0b90138a6c86764c979"|ngalaiko/tree-sitter-go-template", rev = "ca26229bafcd3f37698a2496c2a5efa2f07e86bc"|' languages.toml \
+        && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo build --release -p helix-term --target x86_64-unknown-linux-gnu \
         && mv ./target/x86_64-unknown-linux-gnu/release/hx ~/offline/hx \
         && tar -cvzf ~/offline/helix-runtime.tar.gz runtime \
-        && popd && rm -rf $tmpdir
+        && popd
 
     # Following https://github.com/alacritty/alacritty/blob/master/INSTALL.md
     set -e RUSTFLAGS "-C target-feature=-crt-static -C strip=symbols"
-    tmpdir=$(mktemp -d) && pushd $tmpdir \
-        && git clone https://github.com/alacritty/alacritty --branch $ALACRITTY_VER \
+    mkdir -p ~/offline/build-cache && pushd ~/offline/build-cache \
+        && ([ -d alacritty ] && cd alacritty && git fetch --tags && git checkout $ALACRITTY_VER || git clone https://github.com/alacritty/alacritty --branch $ALACRITTY_VER) \
         && cd alacritty \
         && echo -e '[build]\npre-build = [\n"DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3"\n]' > Cross.toml \
         && cross +stable build --release --locked \
         && mv ./target/x86_64-unknown-linux-gnu/release/alacritty ~/offline/alacritty \
-        && popd && rm -rf $tmpdir
+        && popd
 
     # rust self-installer, mostly for rust-analyzer
     curl -svL https://static.rust-lang.org/dist/rust-$RUST_VER-x86_64-unknown-linux-musl.tar.xz -o ~/offline/rust-$RUST_VER-x86_64-unknown-linux-musl.tar.xz
