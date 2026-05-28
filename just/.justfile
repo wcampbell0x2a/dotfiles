@@ -159,8 +159,16 @@ update-offline-other:
         && tar -cvzf ~/offline/dotfiles.tar.gz . \
         && popd && rm -rf $tmpdir
 
+    # dwm git bundle
+    tmpdir=$(mktemp -d) && pushd $tmpdir \
+        && git clone --mirror https://github.com/wcampbell0x2a/dwm.git \
+        && cd dwm.git && git bundle create ~/offline/dwm.bundle --all \
+        && popd && rm -rf $tmpdir
+
     # font
     curl -svL https://wcampbell.dev/public/berkeley-mono-typeface-zero.zip -o ~/offline/berkely-mono-typeface-zero.zip
 
 update-offline: update-offline-cargo-crates update-offline-dl update-offline-bins update-offline-other
     @echo {{BLUE}}Updated ~/offline {{NORMAL}}
+    tar -cvf ~/offline-$(date +%Y-%m-%d).tar.zst --zstd --exclude='build-cache' ~/offline
+    @echo ~/offline-$(date +%Y-%m-%d).tar.zst
