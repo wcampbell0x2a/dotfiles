@@ -35,6 +35,7 @@ export CARGO_FUZZ_VER := "0.13.1"
 export OUTSIDER_VER := "v0.4.1"
 export RUFF_VER := "0.15.14"
 export BTM_VER := "0.12.3"
+export HARPER_VER := "v2.1.0"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -118,9 +119,11 @@ update-offline-bins:
 
     # harper-ls needs to be built dynamic, so we just use scuba image of an old debian
     set -e RUSTFLAGS="-C target-feature=-crt-static -C strip=symbols"
-    mkdir -p ~/offline/build-cache/harper-ls && pushd ~/offline/build-cache/harper-ls \
-        && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo install harper-ls --locked --root ./offline \
-        && mv offline/bin/harper-ls ~/offline/bin/ \
+    mkdir -p ~/offline/build-cache && pushd ~/offline/build-cache \
+        && ([ -d harper ] && cd harper && git fetch --tags && git checkout $HARPER_VER || git clone https://github.com/Automattic/harper --branch $HARPER_VER) \
+        && cd harper \
+        && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo build --release -p harper-ls --target x86_64-unknown-linux-gnu \
+        && rm -f ~/offline/bin/harper-ls && mv ./target/x86_64-unknown-linux-gnu/release/harper-ls ~/offline/bin/harper-ls \
         && popd
 
     # helix needs to be built dynamic, so we just use scuba image of an old debian
