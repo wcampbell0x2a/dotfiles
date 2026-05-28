@@ -133,7 +133,7 @@ update-offline-bins:
         && cd helix \
         && sed -i 's|dannylongeuay/tree-sitter-go-template", rev = "395a33e08e69f4155156f0b90138a6c86764c979"|ngalaiko/tree-sitter-go-template", rev = "ca26229bafcd3f37698a2496c2a5efa2f07e86bc"|' languages.toml \
         && scuba -d--network=host --image rust:$RUST_VER-$DEB_VER cargo build --release -p helix-term --target x86_64-unknown-linux-gnu \
-        && mv ./target/x86_64-unknown-linux-gnu/release/hx ~/offline/hx \
+        && rm -f ~/offline/bin/hx && mv ./target/x86_64-unknown-linux-gnu/release/hx ~/offline/bin/hx \
         && tar -cvzf ~/offline/helix-runtime.tar.gz runtime \
         && popd
 
@@ -144,7 +144,7 @@ update-offline-bins:
         && cd alacritty \
         && echo -e '[build]\npre-build = [\n"DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install cmake g++ pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3"\n]' > Cross.toml \
         && cross +stable build --release --locked \
-        && mv ./target/x86_64-unknown-linux-gnu/release/alacritty ~/offline/alacritty \
+        && rm -f ~/offline/bin/alacritty && mv ./target/x86_64-unknown-linux-gnu/release/alacritty ~/offline/bin/alacritty \
         && popd
 
     # rust self-installer, mostly for rust-analyzer
