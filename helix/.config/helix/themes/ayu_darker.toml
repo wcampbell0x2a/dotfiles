@@ -1,0 +1,4 @@
+inherits = "ayu_dark"
+
+[palette]
+background = "#0a0e14"
