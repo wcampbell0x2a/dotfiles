@@ -150,6 +150,8 @@ update-offline-bins:
     # rust self-installer, mostly for rust-analyzer
     curl -svL https://static.rust-lang.org/dist/rust-$RUST_VER-x86_64-unknown-linux-musl.tar.xz -o ~/offline/rust-$RUST_VER-x86_64-unknown-linux-musl.tar.xz
     curl -svL https://static.rust-lang.org/dist/rust-$RUST_VER-x86_64-unknown-linux-gnu.tar.xz -o ~/offline/rust-$RUST_VER-x86_64-unknown-linux-gnu.tar.xz
+    # rust-src component (target-independent), needed by rust-analyzer for std sources
+    curl -svL https://static.rust-lang.org/dist/rust-src-$RUST_VER.tar.xz -o ~/offline/rust-src-$RUST_VER.tar.xz
 
 update-offline-other:
     @echo {{BLUE}}Updating offline other {{NORMAL}}
