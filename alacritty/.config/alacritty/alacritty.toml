@@ -1,6 +1,3 @@
-[env]
-TERM = "xterm-256color"
-
 [colors.bright]
 black = "0x686868"
 blue = "0x59C2FF"
