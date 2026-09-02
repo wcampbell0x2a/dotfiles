@@ -16,6 +16,7 @@ language-servers = [ "rust-analyzer", "harper-ls" ]
 
 [[language]]
 name = "c"
+file-types = ["c", "h"]
 formatter = { command = "clang-format", args = ["--style=file"] }
 auto-format = true
 indent = { tab-width = 4, unit = "    " }
