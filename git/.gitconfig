@@ -16,6 +16,7 @@
     sed = ! git grep -z --full-name -l '.' | xargs -0 sed -i -e
 	graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
 	rm-whitespace = sed 's/[ \t]*$//'
+	mrlog = "!f() { git log --reverse --format=\"%h %s%n%b\" \"${1:-origin/master}..HEAD\"; }; f"
 [rebase]
     instructionFormat = %s [%an]
 	autoSquash = true
