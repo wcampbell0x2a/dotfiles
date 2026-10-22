@@ -10,9 +10,13 @@ CARGO_TARGET_DIR = "target/analyzer"
 command = "harper-ls"
 args = ["--stdio"]
 
+[language-server.typos]
+command = "typos-lsp"
+environment = {"RUST_LOG" = "typos_lsp=error"}
+
 [[language]]
 name = "rust"
-language-servers = [ "rust-analyzer", "harper-ls" ]
+language-servers = ["rust-analyzer", "typos"]
 
 [[language]]
 name = "c"
@@ -20,9 +24,9 @@ file-types = ["c", "h"]
 formatter = { command = "clang-format", args = ["--style=file"] }
 auto-format = true
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "clangd", "harper-ls" ]
+language-servers = [ "clangd", "typos" ]
 
 [[language]]
 name = "markdown"
-language-servers = [ "marksman", "harper-ls" ]
+language-servers = [ "marksman", "typos" ]
 

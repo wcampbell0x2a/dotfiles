@@ -36,6 +36,7 @@ export OUTSIDER_VER := "v0.4.1"
 export RUFF_VER := "0.15.14"
 export BTM_VER := "0.12.3"
 export HARPER_VER := "v2.1.0"
+export TYPOS_VER := "v1.51.1"
 
 dl-gh-wc URL:
     just dl-tar https://github.com/wcampbell0x2a/{{URL}}
@@ -110,6 +111,7 @@ update-offline-dl:
     just dl-tar                    https://github.com/rust-fuzz/cargo-fuzz/releases/download/$CARGO_FUZZ_VER/cargo-fuzz-$CARGO_FUZZ_VER-x86_64-unknown-linux-musl.tar.gz
     just dl-tar-file-rm-folder     https://github.com/astral-sh/ruff/releases/download/$RUFF_VER/ruff-x86_64-unknown-linux-musl.tar.gz ruff-x86_64-unknown-linux-musl/ruff
     just dl-tar                    https://github.com/ClementTsang/bottom/releases/download/$BTM_VER/bottom_x86_64-unknown-linux-musl.tar.gz
+    just dl-tar-file               https://github.com/crate-ci/typos/releases/download/$TYPOS_VER/typos-$TYPOS_VER-x86_64-unknown-linux-musl.tar.gz ./typos
 
 update-offline-bins:
     @echo {{BLUE}}Updating offline built special bins {{NORMAL}}
